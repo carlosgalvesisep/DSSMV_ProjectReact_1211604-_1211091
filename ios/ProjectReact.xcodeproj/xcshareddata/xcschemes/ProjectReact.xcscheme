@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "ProjectRead.app"
-               BlueprintName = "ProjectRead"
-               ReferencedContainer = "container:ProjectRead.xcodeproj">
+               BuildableName = "ProjectReact.app"
+               BlueprintName = "ProjectReact"
+               ReferencedContainer = "container:ProjectReact.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "ProjectReadTests.xctest"
-               BlueprintName = "ProjectReadTests"
-               ReferencedContainer = "container:ProjectRead.xcodeproj">
+               BuildableName = "ProjectReactTests.xctest"
+               BlueprintName = "ProjectReactTests"
+               ReferencedContainer = "container:ProjectReact.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "ProjectRead.app"
-            BlueprintName = "ProjectRead"
-            ReferencedContainer = "container:ProjectRead.xcodeproj">
+            BuildableName = "ProjectReact.app"
+            BlueprintName = "ProjectReact"
+            ReferencedContainer = "container:ProjectReact.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "ProjectRead.app"
-            BlueprintName = "ProjectRead"
-            ReferencedContainer = "container:ProjectRead.xcodeproj">
+            BuildableName = "ProjectReact.app"
+            BlueprintName = "ProjectReact"
+            ReferencedContainer = "container:ProjectReact.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
