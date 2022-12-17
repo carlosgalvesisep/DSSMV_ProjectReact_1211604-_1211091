@@ -4,11 +4,11 @@ import {StyleSheet, View, TextInput} from 'react-native';
 const Input = ({value, setValue, placeholder, isSecure}) => {
     return (
         <View style = {styles.container}>
-            <TextInput 
+            <TextInput style = {styles.input}
                 value = {value}
                 onChangeText={setValue}
                 placeholder = {placeholder}
-                style={styles.input}
+                placeholderTextColor= 'grey'
                 secureTextEntry={isSecure}
                 />
         </View>
