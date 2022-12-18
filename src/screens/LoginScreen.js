@@ -5,7 +5,7 @@ import useWindowDimensions from 'react-native/Libraries/Utilities/useWindowDimen
 import Input from '../components/Input';
 import Button from '../components/Button';
 
-const LogInScreen = () => {
+function LogInScreen () {
     const {height} = useWindowDimensions();
 
     const [username, setUsername] = useState('');
