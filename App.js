@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 const Tab = createBottomTabNavigator();
 
 import LogInScreen from './src/screens/LoginScreen';
-import ExampleScreen from './src/screens/ExampleScreen';
+import HomeScreen from './src/screens/HomeScreen';
 
 
 const loginName = 'Log in';
@@ -16,41 +16,39 @@ const favouritesName = 'Favourites';
 
 export default function App () {
     return (
-      <NavigationContainer>
-        <Tab.Navigator
-          initialRouteName={homeName}
-          screenOptions={({route}) => ({
-            tabBarIcon: ({focused, color, size}) => {
-              let iconName;
-              let routeName = route.name;
+    	<NavigationContainer>
+    		<Tab.Navigator
+				initialRouteName={homeName}
+				screenOptions={({route}) => ({
+					tabBarIcon: ({focused, color, size}) => {
+					let iconName;
+					let routeName = route.name;
 
-              if (routeName === homeName) {
-                  iconName = focused ? 'home' : 'home-outline'
-              } else if (routeName === loginName) {
-                  iconName = focused ? 'home' : 'home-outline'
-              }
+					if (routeName === homeName) {
+						iconName = focused ? 'home' : 'home-outline'
+					} else if (routeName === loginName) {
+						iconName = focused ? 'home' : 'home-outline'
+					}
 
-              return <Icon name = {iconName} size={size} color={color}/>
-            },
-          })}
-        >
-          <Tab.Screen
-            name={loginName}
-            component={LogInScreen}
-          />
-          <Tab.Screen
-            name={homeName}
-            component={ExampleScreen}
-          />
-        </Tab.Navigator>
-      </NavigationContainer>
+					return <Icon name = {iconName} size={size} color={color}/>
+					},
+        		})}>
+				<Tab.Screen style={styles.root}
+					name={loginName}
+					component={LogInScreen}
+				/>
+				<Tab.Screen style={styles.root}
+					name={homeName}
+					component={HomeScreen}
+				/>
+        	</Tab.Navigator>
+      	</NavigationContainer>
     );
-
 }
 
 const styles = StyleSheet.create({
     root: {
-      backgroundColor: 'grey',
-      flex: 1
+		backgroundColor: 'grey',
+		flex: 1
     }
 });

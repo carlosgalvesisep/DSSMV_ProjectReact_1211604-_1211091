@@ -1,73 +1,95 @@
 import {useEffect, useState} from 'react';
-import {ScrollView, StyleSheet, Image, View} from 'react-native';
-import {Foundation as FoundationIcon} from '@expo/vector-icons';
+import {StyleSheet, View, Text} from 'react-native';
+import { API_KEY, BASE_URL, IMAGE_URL } from '../utils/ApiHandler';
+import MoviesList from '../components/MoviesList';
 
-import Movie from '../types/Movie';
-import MovieSection from '../components/MovieSection';
+
 
 function HomeScreen() {
-  const [topRatedMovies, setTopRatedMovies] = useState<Movie[]>([]);
-  const [nowPlayingMovies, setNowPlayingMovies] = useState<Movie[]>([]);
-  const [upcomingMovies, setUpcomingMovies] = useState<Movie[]>([]);
-  const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
-  const controller = new AbortController();
 
-  useEffect(() => {
-    searchMovies();
-  }, []);
+  	const initialData = {
+      	loading: false,
+      	error: null,
+      	data: {
+          results: [],    //array de respostas(filmes)
+		  poster_path: ""
+     	}
+  	};
 
-  const searchMovies = () => {
-    fetch(
-      'https://api.themoviedb.org/3/movie/now_playing?' +
-        new URLSearchParams({api_key: process.env.API_KEY}),
-      {method: 'GET', signal: controller.signal},
-    )
-      .then(response => response.json())
-      .then(data => {
-        setNowPlayingMovies(data.results);
-      })
-      .catch();
+  	const parse = (response) => {
+      	if (response.ok) {
+          	return response.json();
+      	} else {
+          	throw new Error('Something went wrong ...');
+      	}
+  	};
 
-    fetch(
-      'https://api.themoviedb.org/3/movie/popular?' +
-        new URLSearchParams({api_key: process.env.API_KEY}),
-      {method: 'GET', signal: controller.signal},
-    )
-      .then(response => response.json())
-      .then(data => setPopularMovies(data.results))
-      .catch();
 
-    fetch(
-      'https://api.themoviedb.org/3/movie/top_rated?' +
-        new URLSearchParams({api_key: process.env.API_KEY}),
-      {method: 'GET', signal: controller.signal},
-    )
-      .then(response => response.json())
-      .then(data => setTopRatedMovies(data.results))
-      .catch();
+  	const [popularMovies, setPopularMovies] = useState(initialData);
 
-    fetch(
-      'https://api.themoviedb.org/3/movie/upcoming?' +
-        new URLSearchParams({api_key: process.env.API_KEY}),
-      {method: 'GET', signal: controller.signal},
-    )
-      .then(response => response.json())
-      .then(data => setUpcomingMovies(data.results))
-      .catch();
-  };
+	const fetchPopularMovies = async () => {
+		setPopularMovies({
+      		...popularMovies,
+			loading: true,
+			error: null,
+		});
+        try {
+            const response = await fetch(BASE_URL + '/movie/popular' +'?api_key=' + API_KEY);
+            const obj = await parse(response);
+            setPopularMovies({
+                ...popularMovies,
+                loading: false,
+                error: null,
+                data: { results: obj.results, poster_path: obj.poster_path }
+            })
+        } catch (error) {
+            setPopularMovies({
+                ...popularMovies,
+                loading: false,
+                error: error,
+                data: {},
+            })
+  
+        }
+    }
+      
+	useEffect(() => {
+        fetchPopularMovies();
+        return () => { }
+    }, []);
+  
+    const { loading, error, data } = popularMovies;
+    if (loading == true) {
+        return (<View>
+            <Text Loading />
+        </View>);
+    } else {
+        if (error) {
+            return (
+			<View>
+                <Text Error />
+            </View>);
+        } else {
+            const { results } = data;
+            return (
+			<View>
+            	<MoviesList results={results} />
+            </View>);
+        }
+    }
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.mainContent}>
-        <View style={styles.image}>
-          <Image
-            resizeMode="contain"
-            source={require('../assets/tmdb-long-logo.png')}
-            style={{width: '80%', height: 50}}
-          />
-        </View>
-
-        <ScrollView style={styles.scrollView}>
+	/*
+  	return (
+    	<View style={styles.container}>
+      		<View style={styles.mainContent}>
+        		<View style={styles.image}>
+          			<Image
+						resizeMode="contain"
+						source={require('../assets/tmdb-long-logo.png')}
+						style={{width: '80%', height: 50}}
+          			/>
+        		</View>
+		<ScrollView style={styles.scrollView}>
           <MovieSection
             movies={nowPlayingMovies}
             sectionTitle="Now playing in theaters..."
@@ -90,9 +112,10 @@ function HomeScreen() {
         </ScrollView>
       </View>
     </View>
-  );
-}
+  	);
+	*/
 
+};
 const styles = StyleSheet.create({
   container: {
     flex: 1,
