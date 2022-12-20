@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import AppProvider from './src/context/AppProvider';
 const Tab = createBottomTabNavigator();
 
 import LogInScreen from './src/screens/LoginScreen';
@@ -19,6 +19,9 @@ const favouritesName = 'Favourites';
 
 export default function App() {
   return (
+
+    
+<AppProvider> 
     <NavigationContainer>
       <Tab.Navigator
         initialRouteName={homeName}
@@ -60,7 +63,8 @@ export default function App() {
           }}
         />
       </Tab.Navigator>
-    </NavigationContainer>
+    </NavigationContainer> 
+    </AppProvider> 
   );
 }
 

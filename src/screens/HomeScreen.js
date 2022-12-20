@@ -7,76 +7,113 @@ import MoviesList from '../components/MoviesList';
 
 function HomeScreen() {
 
-  	const initialData = {
-      	loading: false,
-      	error: null,
-      	data: {
-          results: [],    //array de respostas(filmes)
-		  poster_path: ""
-     	}
-  	};
-
-  	const parse = (response) => {
-      	if (response.ok) {
-          	return response.json();
-      	} else {
-          	throw new Error('Something went wrong ...');
-      	}
-  	};
+	return (
+		<View style={styles.container}>
+		  <MoviesList />
+		</View>
+	  );
 
 
-  	const [popularMovies, setPopularMovies] = useState(initialData);
 
-	const fetchPopularMovies = async () => {
-		setPopularMovies({
-      		...popularMovies,
-			loading: true,
-			error: null,
-		});
-        try {
-            const response = await fetch(BASE_URL + '/movie/popular' +'?api_key=' + API_KEY);
-            const obj = await parse(response);
-            setPopularMovies({
-                ...popularMovies,
-                loading: false,
-                error: null,
-                data: { results: obj.results, poster_path: obj.poster_path }
-            })
-        } catch (error) {
-            setPopularMovies({
-                ...popularMovies,
-                loading: false,
-                error: error,
-                data: {},
-            })
-  
-        }
-    }
-      
-	useEffect(() => {
-        fetchPopularMovies();
-        return () => { }
-    }, []);
-  
-    const { loading, error, data } = popularMovies;
-    if (loading == true) {
-        return (<View>
-            <Text Loading />
-        </View>);
-    } else {
-        if (error) {
-            return (
-			<View>
-                <Text Error />
-            </View>);
-        } else {
-            const { results } = data;
-            return (
-			<View>
-            	<MoviesList results={results} />
-            </View>);
-        }
-    }
+
+
+
+
+
+
+
+
+/* 
+	const initialData = {
+		loading: false,
+		error: null,
+		data: {
+		results: [],    //array de respostas(filmes)
+		poster_path: ""
+	   }
+	};
+
+	const parse = (response) => {
+		if (response.ok) {
+			return response.json();
+		} else {
+			throw new Error('Something went wrong ...');
+		}
+	};
+
+
+	const [popularMovies, setPopularMovies] = useState(initialData);
+
+
+
+
+
+
+
+  const fetchPopularMovies = async () => {
+	  setPopularMovies({
+			...popularMovies,
+		  loading: true,
+		  error: null,
+	  });
+	  try {
+		  const response = await fetch(BASE_URL + '/movie/popular' +'?api_key=' + API_KEY);
+		  const obj = await parse(response);
+		  setPopularMovies({
+			  ...popularMovies,
+			  loading: false,
+			  error: null,
+			  data: { results: obj.results, poster_path: obj.poster_path }
+		  })
+	  } catch (error) {
+		  setPopularMovies({
+			  ...popularMovies,
+			  loading: false,
+			  error: error,
+			  data: {},
+		  })
+
+	  }
+  }
+	
+  useEffect(() => {
+	  fetchPopularMovies();
+	  return () => { }
+  }, []);
+
+  const { loading, error, data } = popularMovies;
+  if (loading == true) {
+	  return (<View>
+		  <Text Loading />
+	  </View>);
+  } else {
+	  if (error) {
+		  return (
+		  <View>
+			  <Text Error />
+		  </View>);
+	  } else {
+		  const { results } = data;
+		  return (
+		  <View>
+			  <MoviesList results={results} />
+		  </View>);
+	  }
+  } */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	/*
   	return (
@@ -119,6 +156,7 @@ function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+	padding:10,
     backgroundColor: '#000',
     alignItems: 'center',
   },
