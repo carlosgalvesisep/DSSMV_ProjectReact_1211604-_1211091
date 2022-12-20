@@ -7,9 +7,12 @@ const Tab = createBottomTabNavigator();
 
 import LogInScreen from './src/screens/LoginScreen';
 import HomeScreen from './src/screens/HomeScreen';
+import AccountScreen from './src/screens/AccountScreen';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { acc } from 'react-native-reanimated';
 
 const loginName = 'Log in';
+const accountName = 'Account';
 const homeName = 'Home';
 const watchlistName = 'Watch List';
 const favouritesName = 'Favourites';
@@ -18,25 +21,36 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName="loginName"
+        initialRouteName={homeName}
         tabBarOptions={{
           activeTintColor: 'orange',
           tabBarInactiveTintColor: 'gray',
         }}>
         <Tab.Screen
           //style={styles.root}
-          name="loginName"
+          name={loginName}
           component={LogInScreen}
           options={{
-            tabBarLabel: 'Login',
+            tabBarLabel: 'Log in',
             tabBarIcon: ({color, size}) => (
               <MaterialCommunityIcons name="login" color={color} size={size} />
             ),
           }}
         />
+		<Tab.Screen
+          //style={styles.root}
+          name={accountName}
+          component={AccountScreen}
+          options={{
+            tabBarLabel: 'Account',
+            tabBarIcon: ({color, size}) => (
+              <MaterialCommunityIcons name="account" color={color} size={size} />
+            ),
+          }}
+        />
         <Tab.Screen
           //style={styles.root}
-          name="homeName"
+          name={homeName}
           component={HomeScreen}
           options={{
             tabBarLabel: 'Home',
