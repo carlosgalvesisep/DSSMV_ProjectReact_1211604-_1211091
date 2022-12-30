@@ -1,7 +1,7 @@
 
 import {
     FETCH_POPULARMOVIES_STARTED,
-	FETCH_POPULARMOVIES_SUCCESS,
+	  FETCH_POPULARMOVIES_SUCCESS,
     FETCH_POPULARMOVIES_FAILURE,
   } from './Actions'
   
@@ -15,7 +15,8 @@ import {
           movies: {
             loading: true,
             error: null,
-            data: []
+            data: {
+              results:[]}
           }
         }
       case FETCH_POPULARMOVIES_SUCCESS:

@@ -12,20 +12,20 @@ const initialState = {
   }
 
 };
-
+/*
  const movie_labels = {
+  results: [],
   id: 0,
   original_title: "Title",
   poster_path: "/94xxm5701CzOdJdUEdIuwqZaowx.jpg",
-}; 
+}; */
 
 const AppProvider = (props) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <Provider value={{
       state,
-      movie_labels,
-      dispatch
+      dispatch,
     }}>
       {props.children}
     </Provider>
