@@ -8,14 +8,15 @@ import { fetchPopularMovies, fetchPopularMoviesStarted, fetchUpcomingMovies, fet
 
 function HomeScreen() {
 
-	return (
-		<ScrollView style={styles.scrollView}>
-		  <MoviesList requestParameter='movie/top_rated' fetch={fetchPopularMovies} fetchStarted={fetchPopularMoviesStarted}/>
-		  <MoviesList requestParameter='movie/latest' fetch={fetchUpcomingMovies} fetchStarted={fetchUpcomingMoviesStarted}/>
+    return (
+        <ScrollView style={styles.scrollView}>
+			<MoviesList requestParameter='movie/popular' />
+            <MoviesList requestParameter='movie/upcoming' />
+            <MoviesList requestParameter='movie/upcoming' />
+			<MoviesList requestParameter='movie/popular' />
 
-
-		</ScrollView>
-	  );
+        </ScrollView>
+    );
 
 
 
@@ -23,25 +24,26 @@ function HomeScreen() {
 
 };
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-	padding:10,
-    backgroundColor: '#000',
-    alignItems: 'center',
-  },
-  scrollView: {
-    marginLeft: 20,
-    marginTop: 20,
-	marginBottom:50
-  },
-  mainContent: {
-    width: '100%',
-    top: 50,
-  },
-  image: {
-    alignItems: 'center',
-    marginBottom: 20,
-  },
+  	container: {
+		flex: 1,
+		padding:10,
+		backgroundColor: '#000',
+		alignItems: 'center',
+  	},
+	scrollView: {
+		marginLeft: 20,
+		marginTop: 20,
+		marginBottom:50,
+		flex: 1,
+	},
+	mainContent: {
+		width: '100%',
+		top: 50,
+	},
+	image: {
+		alignItems: 'center',
+		marginBottom: 20,
+	},
 });
 
 export default HomeScreen;

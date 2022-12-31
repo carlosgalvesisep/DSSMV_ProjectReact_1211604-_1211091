@@ -5,11 +5,17 @@ import { Provider } from './AppContext';
 import reducer from './Reducer';
 
 const initialState = {
-  movies: {
+  popularMovies: {
+    loading: true,
+    error: null,
+    data: [],
+  },
+  upcomingMovies: {
     loading: true,
     error: null,
     data: [],
   }
+
 
 };
 /*

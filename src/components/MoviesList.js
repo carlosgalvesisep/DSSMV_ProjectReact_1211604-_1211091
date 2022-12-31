@@ -1,23 +1,41 @@
 import React, {useContext, useEffect} from 'react';
 import AppContext from '../context/AppContext';
-//import { fetchPopularMoviesStarted, fetchPopularMovies } from '../context/Actions';
 import { View, Text, FlatList, Image, StyleSheet } from 'react-native';
 import { BASE_URL, API_KEY, IMAGE_URL } from '../services/ApiHandler';
+import { fetchPopularMovies, fetchPopularMoviesStarted, fetchUpcomingMovies, fetchUpcomingMoviesStarted } from '../context/Actions';
+import { Header } from '@react-navigation/stack';
   
 
-  const MoviesList = ({requestParameter, fetch, fetchStarted}) => {
+  const MoviesList = ({requestParameter, title}) => {
     const { state, dispatch } = useContext(AppContext);
-    const { movies } = state;
-    const { loading, error, data } = movies;
-    useEffect(() => {
-        dispatch(fetchStarted());
-        const url = `${BASE_URL}/${requestParameter}?api_key=${API_KEY}`;
-        console.log('URL: ' + url)
-        const request = {};
-        fetch(url, request, dispatch);
-        console.log("A:" + data.json);
+    ({ loading, error, data } = state);
+    const url = `${BASE_URL}/${requestParameter}?api_key=${API_KEY}`;
+    const request = {};
+    
 
+    switch (requestParameter) {
+        case 'movie/popular':
+                fetchStarted=fetchPopularMoviesStarted
+                fetchMovies=fetchPopularMovies(url, request, dispatch) 
+                const { popularMovies } = state;
+                ({ loading, error, data } = popularMovies);  
+                break;
+            
+        case 'movie/upcoming':
+                fetchStarted=fetchUpcomingMoviesStarted
+                fetchMovies=fetchUpcomingMovies(url, request, dispatch)                
+                const { upcomingMovies } = state;
+                ({ loading, error, data } = upcomingMovies);  
+                break;
+        }
+
+
+    useEffect(() => {
+        dispatch(fetchStarted);
+
+        fetchMovies;
     }, []);
+
     if (loading === true) {
         return (
             <View style={styles.item}>
@@ -34,11 +52,6 @@ import { BASE_URL, API_KEY, IMAGE_URL } from '../services/ApiHandler';
                 </View>
             );
         } else {
-            const {results} = data;
-
-            console.log(data)
-            console.log(data.length)
-            console.log(IMAGE_URL)
             if (data.length > 0) {
                 return (
                     <FlatList

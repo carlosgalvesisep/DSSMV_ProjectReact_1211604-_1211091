@@ -8,7 +8,6 @@ export const FETCH_UPCOMINGMOVIES_SUCCESS = 'FETCH_UPCOMINGMOVIES_SUCCESS';
 export const FETCH_UPCOMINGMOVIES_FAILURE = 'FETCH_UPCOMINGMOVIES_FAILURE';
 
 export function fetchPopularMovies(url, request, dispatch) {
-    console.log(JSON.stringify(url));
     //função ser executado em caso de sucesso
     const success = (res) => dispatch(fetchPopularMoviesSuccess(res));
     //função ser executado em caso de falha
@@ -17,7 +16,6 @@ export function fetchPopularMovies(url, request, dispatch) {
 }
 
 export function fetchUpcomingMovies(url, request, dispatch) {
-    console.log(JSON.stringify(url));
     //função ser executado em caso de sucesso
     const success = (res) => dispatch(fetchUpcomingMoviesSuccess(res));
     //função ser executado em caso de falha
@@ -30,19 +28,15 @@ export function fetchUpcomingMovies(url, request, dispatch) {
 export function fetchPopularMoviesStarted() {
     return {
       type: FETCH_POPULARMOVIES_STARTED,
-
     }
 }
   
-export function fetchPopularMoviesSuccess(movies) {
+export function fetchPopularMoviesSuccess(popularMovies) {
     return {
       type: FETCH_POPULARMOVIES_SUCCESS,
       payload: {
-        
-        data: movies.results
-        //data: [...movies]
+        data: popularMovies.results
       }
-  
     }
 }
 
@@ -60,19 +54,15 @@ export function fetchPopularMoviesFailure(message) {
 export function fetchUpcomingMoviesStarted() {
 	return {
     	type: FETCH_UPCOMINGMOVIES_STARTED,
-
   	}
 }
 
-export function fetchUpcomingMoviesSuccess(movies) {
+export function fetchUpcomingMoviesSuccess(upcomingMovies) {
   return {
     type: FETCH_UPCOMINGMOVIES_SUCCESS,
     payload: {
-      
-      data: movies.results
-      //data: [...movies]
+      data: upcomingMovies.results
     }
-
   }
 }
 export function fetchUpcomingMoviesFailure(message) {

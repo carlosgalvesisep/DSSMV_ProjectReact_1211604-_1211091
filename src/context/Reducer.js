@@ -3,6 +3,9 @@ import {
     FETCH_POPULARMOVIES_STARTED,
 	  FETCH_POPULARMOVIES_SUCCESS,
     FETCH_POPULARMOVIES_FAILURE,
+    FETCH_UPCOMINGMOVIES_STARTED,
+    FETCH_UPCOMINGMOVIES_SUCCESS,
+    FETCH_UPCOMINGMOVIES_FAILURE,
   } from './Actions'
   
   
@@ -12,7 +15,7 @@ import {
       case FETCH_POPULARMOVIES_STARTED:
         return {
           ...state,
-          movies: {
+          popularMovies: {
             loading: true,
             error: null,
             data: {
@@ -22,7 +25,7 @@ import {
       case FETCH_POPULARMOVIES_SUCCESS:
         return {
           ...state,
-          movies: {
+          popularMovies: {
             loading: false,
             error: null,
             data: [...action.payload.data]
@@ -31,7 +34,35 @@ import {
       case FETCH_POPULARMOVIES_FAILURE:
         return {
           ...state,
-          movies: {
+          popularMovies: {
+            loading: false,
+            error: action.payload.error,
+            data: [],
+          }
+        }
+        case FETCH_UPCOMINGMOVIES_STARTED:
+        return {
+          ...state,
+          upcomingMovies: {
+            loading: true,
+            error: null,
+            data: {
+              results:[]}
+          }
+        }
+      case FETCH_UPCOMINGMOVIES_SUCCESS:
+        return {
+          ...state,
+          upcomingMovies: {
+            loading: false,
+            error: null,
+            data: [...action.payload.data]
+          }
+        }
+      case FETCH_UPCOMINGMOVIES_FAILURE:
+        return {
+          ...state,
+          upcomingMovies: {
             loading: false,
             error: action.payload.error,
             data: [],
