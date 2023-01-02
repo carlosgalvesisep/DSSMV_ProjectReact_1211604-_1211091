@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import {StyleSheet, View,ScrollView, Text} from 'react-native';
 import { API_KEY, BASE_URL, IMAGE_URL } from '../utils/ApiHandler';
 import MoviesList from '../components/MoviesList';
+import SeriesList from '../components/SeriesList';
 import { fetchPopularMovies, fetchPopularMoviesStarted, fetchUpcomingMovies, fetchUpcomingMoviesStarted } from '../context/Actions';
 
 
@@ -9,13 +10,13 @@ import { fetchPopularMovies, fetchPopularMoviesStarted, fetchUpcomingMovies, fet
 function HomeScreen() {
 
     return (
-        <ScrollView style={styles.scrollView}>
-			<MoviesList requestParameter='movie/popular' />
-            <MoviesList requestParameter='movie/upcoming' />
-            <MoviesList requestParameter='movie/upcoming' />
-			<MoviesList requestParameter='movie/popular' />
+		<ScrollView style={styles.scrollView}>
+		<SeriesList requestParameter='/tv/popular' />
+		<SeriesList requestParameter='/tv/popular'/>
+		<SeriesList requestParameter='/tv/top_rated' />
+		<SeriesList requestParameter='/tv/top_rated' />
 
-        </ScrollView>
+	</ScrollView>
     );
 
 
