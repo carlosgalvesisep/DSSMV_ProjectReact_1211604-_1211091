@@ -13,8 +13,6 @@ function HomeScreen() {
 		    <ScrollView style={styles.scrollView}>
 			<MoviesList requestParameter='movie/popular' />
             <MoviesList requestParameter='movie/upcoming'/>
-            <MoviesList requestParameter='movie/upcoming' />
-			<MoviesList requestParameter='movie/popular' />
 
         </ScrollView>
 		/*<ScrollView style={styles.scrollView}>

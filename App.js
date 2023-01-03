@@ -26,7 +26,7 @@ export default function App() {
 <AppProvider> 
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName={homeName}
+        initialRouteName={seriesName}
         tabBarOptions={{
           activeTintColor: 'orange',
           tabBarInactiveTintColor: 'gray',
@@ -71,7 +71,7 @@ export default function App() {
           options={{
             tabBarLabel: 'Series',
             tabBarIcon: ({color, size}) => (
-              <MaterialCommunityIcons name="tv" color={color} size={size} />
+              <MaterialCommunityIcons name="television-classic" color={color} size={size} />
             ),
           }}
         />

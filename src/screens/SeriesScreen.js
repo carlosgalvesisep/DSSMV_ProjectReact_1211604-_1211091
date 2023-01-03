@@ -9,10 +9,8 @@ function SeriesScreen() {
     return (
 		
 		<ScrollView style={styles.scrollView}>
-		<SeriesList requestParameter='/tv/popular' />
-		<SeriesList requestParameter='/tv/popular'/>
-		<SeriesList requestParameter='/tv/top_rated' />
-		<SeriesList requestParameter='/tv/top_rated' />
+		<SeriesList requestParameter='tv/popular' />
+		<SeriesList requestParameter='tv/top_rated' />
 
 	</ScrollView>
     );

@@ -127,11 +127,11 @@ export function fetchTopRatedSeriesStarted() {
   	}
 }
 
-export function fetchTopRatedSeriesSuccess(TopRatedSeries) {
+export function fetchTopRatedSeriesSuccess(topRatedSeries) {
   return {
     type: FETCH_TOPRATEDSERIES_SUCCESS,
     payload: {
-      data: TopRatedSeries.results
+      data: topRatedSeries.results
     }
   }
 }

@@ -20,7 +20,7 @@ const initialState = {
     error: null,
     data: [],
   },
-  TopRatedSeries: {
+  topRatedSeries: {
     loading: true,
     error: null,
     data: [],

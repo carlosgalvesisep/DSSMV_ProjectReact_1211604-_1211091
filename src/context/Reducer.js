@@ -105,7 +105,7 @@ import {
         case FETCH_TOPRATEDSERIES_STARTED:
           return {
             ...state,
-            TopRatedSeries: {
+            topRatedSeries: {
               loading: true,
               error: null,
               data: {
@@ -115,7 +115,7 @@ import {
         case FETCH_TOPRATEDSERIES_SUCCESS:
           return {
             ...state,
-            TopRatedSeries: {
+            topRatedSeries: {
               loading: false,
               error: null,
               data: [...action.payload.data]
@@ -124,7 +124,7 @@ import {
         case FETCH_TOPRATEDSERIES_FAILURE:
           return {
             ...state,
-            TopRatedSeries: {
+            topRatedSeries: {
               loading: false,
               error: action.payload.error,
               data: [],
