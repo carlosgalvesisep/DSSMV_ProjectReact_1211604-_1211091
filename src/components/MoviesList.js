@@ -1,16 +1,16 @@
 import React, {useContext, useEffect} from 'react';
 import AppContext from '../context/AppContext';
-import {View, Text, FlatList, Image, StyleSheet} from 'react-native';
+import {View, Text, FlatList, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {BASE_URL, API_KEY, IMAGE_URL} from '../services/ApiHandler';
+import { useNavigation } from '@react-navigation/native';
 import {
   fetchPopularMovies,
   fetchPopularMoviesStarted,
   fetchUpcomingMovies,
   fetchUpcomingMoviesStarted,
 } from '../context/Actions';
-import {Header} from '@react-navigation/stack';
 
-const MoviesList = ({requestParameter, title}) => {
+const MoviesList = ({requestParameter}) => {
   const {state, dispatch} = useContext(AppContext);
   ({loading, error, data} = state);
   const url = `${BASE_URL}/${requestParameter}?api_key=${API_KEY}`;
@@ -53,13 +53,21 @@ const MoviesList = ({requestParameter, title}) => {
       );
     } else {
       if (data.length > 0) {
+        
+const navigation = useNavigation();
         return (
           <FlatList
             horizontal
             data={data}
             keyExtractor={item => item.id}
-            renderItem={({item}) => (
+            renderItem={({item}) =>
+          (
+            <TouchableOpacity 
+            onPress={() => 
+            navigation.navigate('DetailsScreen',{data: item.id})}>       
+          
               <View style={styles.view}>
+                
                 <Image
                   style={styles.image}
                   source={{uri: IMAGE_URL + item.poster_path}}
@@ -68,7 +76,9 @@ const MoviesList = ({requestParameter, title}) => {
 
                 <Text style={styles.text}> {item.title}</Text>
               </View>
-            )}
+              </TouchableOpacity>
+          )
+            }
           />
         );
       } else {
