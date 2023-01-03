@@ -10,13 +10,20 @@ import { fetchPopularMovies, fetchPopularMoviesStarted, fetchUpcomingMovies, fet
 function HomeScreen() {
 
     return (
-		<ScrollView style={styles.scrollView}>
+		    <ScrollView style={styles.scrollView}>
+			<MoviesList requestParameter='movie/popular' />
+            <MoviesList requestParameter='movie/upcoming'/>
+            <MoviesList requestParameter='movie/upcoming' />
+			<MoviesList requestParameter='movie/popular' />
+
+        </ScrollView>
+		/*<ScrollView style={styles.scrollView}>
 		<SeriesList requestParameter='/tv/popular' />
 		<SeriesList requestParameter='/tv/popular'/>
 		<SeriesList requestParameter='/tv/top_rated' />
 		<SeriesList requestParameter='/tv/top_rated' />
 
-	</ScrollView>
+	</ScrollView>*/
     );
 
 

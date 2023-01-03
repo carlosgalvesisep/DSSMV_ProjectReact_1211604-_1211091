@@ -3,13 +3,11 @@ import AppContext from '../context/AppContext';
 import { View, Text, FlatList, Image, StyleSheet } from 'react-native';
 import { BASE_URL, API_KEY, IMAGE_URL } from '../services/ApiHandler';
 import {fetchPopularSeries, fetchPopularSeriesStarted, fetchTopRatedSeries, fetchTopRatedSeriesStarted} from '../context/Actions';
-import Header from './MovieHeader';
   
 
-  const SeriesList = ({requestParameter, title}) => {
+  const SeriesList = ({requestParameter}) => {
     const { state, dispatch } = useContext(AppContext);
     ({ loading, error, data } = state);
-    const title = title;
     const url = `${BASE_URL}/${requestParameter}?api_key=${API_KEY}`;
     const request = {};
     
@@ -18,15 +16,13 @@ import Header from './MovieHeader';
         case 'tv/popular':
                 fetchStarted=fetchPopularSeriesStarted
                 fetchSeries=fetchPopularSeries(url, request, dispatch) 
-                title = 'Popular Series'
                 const { popularSeries } = state;
                 ({ loading, error, data } = popularSeries);  
                 break;
             
         case 'tv/top_rated':
                 fetchStarted=fetchTopRatedSeriesStarted
-                fetchSeries=fetchTopRatedSeries(url, request, dispatch)     
-                title = 'Top Rated Series'           
+                fetchSeries=fetchTopRatedSeries(url, request, dispatch)               
                 const { TopRatedSeries } = state;
                 ({ loading, error, data } = TopRatedSeries);  
                 break;
@@ -69,7 +65,7 @@ import Header from './MovieHeader';
                                     resizeMode="cover"
                                 />
 
-                                <Text style={styles.text}> {item.title}</Text>
+                                <Text style={styles.text}> {item.name}</Text>
 
 
                             </View>

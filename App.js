@@ -10,10 +10,12 @@ import HomeScreen from './src/screens/HomeScreen';
 import AccountScreen from './src/screens/AccountScreen';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { acc } from 'react-native-reanimated';
+import SeriesScreen from './src/screens/SeriesScreen';
 
 const loginName = 'Log in';
 const accountName = 'Account';
 const homeName = 'Home';
+const seriesName = 'Series';
 const watchlistName = 'Watch List';
 const favouritesName = 'Favourites';
 
@@ -59,6 +61,17 @@ export default function App() {
             tabBarLabel: 'Home',
             tabBarIcon: ({color, size}) => (
               <MaterialCommunityIcons name="home" color={color} size={size} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          //style={styles.root}
+          name={seriesName}
+          component={SeriesScreen}
+          options={{
+            tabBarLabel: 'Series',
+            tabBarIcon: ({color, size}) => (
+              <MaterialCommunityIcons name="tv" color={color} size={size} />
             ),
           }}
         />
