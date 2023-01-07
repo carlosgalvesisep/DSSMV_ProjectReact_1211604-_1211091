@@ -1,7 +1,8 @@
 import React, {useContext, useEffect} from 'react';
 import AppContext from '../context/AppContext';
-import {View, Text, FlatList, Image, StyleSheet} from 'react-native';
+import {View, Text, FlatList, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {BASE_URL, API_KEY, IMAGE_URL} from '../services/ApiHandler';
+import { useNavigation } from '@react-navigation/native';
 import {
   fetchPopularSeries,
   fetchPopularSeriesStarted,
@@ -11,30 +12,16 @@ import {
 
 const SeriesList = ({requestParameter}) => {
   const {state, dispatch} = useContext(AppContext);
-  ({loading, error, data} = state);
-  const url = `${BASE_URL}/${requestParameter}?api_key=${API_KEY}`;
+  const {popularSeries} = state;
+    ({loading, error, data} = popularSeries);
+  const url = `${BASE_URL}/$tv/popular?api_key=${API_KEY}`;
   const request = {};
 
-  switch (requestParameter) {
-    case 'tv/popular':
-      fetchStarted = fetchPopularSeriesStarted;
-      fetchSeries = fetchPopularSeries(url, request, dispatch);
-      const {popularSeries} = state;
-      ({loading, error, data} = popularSeries);
-      break;
-
-    case 'tv/top_rated':
-      fetchStarted = fetchTopRatedSeriesStarted;
-      fetchSeries = fetchTopRatedSeries(url, request, dispatch);
-      const {topRatedSeries} = state;
-      ({loading, error, data} = topRatedSeries);
-      break;
-  }
 
   useEffect(() => {
-    dispatch(fetchStarted);
+    dispatch(fetchPopularSeriesStarted);
 
-    fetchSeries;
+    fetchPopularSeries;
   }, []);
 
   if (loading === true) {
@@ -52,12 +39,17 @@ const SeriesList = ({requestParameter}) => {
       );
     } else {
       if (data.length > 0) {
+        const navigation = useNavigation();
         return (
           <FlatList
-            horizontal
+          vertical
             data={data}
             keyExtractor={item => item.id}
-            renderItem={({item}) => (
+            renderItem={({item}) => 
+            (
+              <TouchableOpacity 
+            onPress={() => 
+            navigation.navigate('SeriesDetailsScreen',{data: item.id})}>  
               <View style={styles.view}>
                 <Image
                   style={styles.image}
@@ -67,6 +59,7 @@ const SeriesList = ({requestParameter}) => {
 
                 <Text style={styles.text}> {item.name}</Text>
               </View>
+              </TouchableOpacity>
             )}
           />
         );
@@ -84,6 +77,7 @@ const styles = StyleSheet.create({
   view: {
     paddingTop: 20,
     marginLeft: 20,
+    marginRight: 20,
   },
   item: {
     borderTopWidth: 2,
@@ -92,12 +86,14 @@ const styles = StyleSheet.create({
     marginBottom: 200,
   },
   image: {
-    width: 100,
-    height: 150,
+    width: 200,
+    height: 300,
     marginBottom: 5,
+    alignSelf: 'center',
   },
   text: {
     color: 'black',
+    alignSelf: 'center'
   },
 });
 

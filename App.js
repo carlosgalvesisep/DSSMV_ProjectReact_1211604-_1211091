@@ -15,14 +15,8 @@ import AccountScreen from './src/screens/AccountScreen';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { acc } from 'react-native-reanimated';
 import SeriesScreen from './src/screens/SeriesScreen';
+import SeriesDetailsScreen from './src/screens/SeriesDetailsScreen';
 
-const loginName = 'Log in';
-const accountName = 'Account';
-const homeName = 'Home';
-const seriesName = 'Series';
-const detailsName = 'Details';
-const watchlistName = 'Watch List';
-const favouritesName = 'Favourites';
 
 
 
@@ -94,6 +88,9 @@ export default function App() {
       <Stack.Screen
       name="AccountScreen"
       component={AccountScreen}/>
+      <Stack.Screen
+      name="SeriesDetailsScreen"
+      component={SeriesDetailsScreen}/>
       </Stack.Navigator>
     </NavigationContainer> 
     </AppProvider> 

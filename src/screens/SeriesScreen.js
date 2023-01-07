@@ -7,10 +7,8 @@ import { fetchPopularSeries, fetchPopularSeriesStarted, fetchTopRatedSeries, fet
 function SeriesScreen() {
 
     return (
-		
-		<ScrollView style={styles.scrollView}>
-		<SeriesList requestParameter='tv/popular' />
-	</ScrollView>
+		<SeriesList  />
+
     );
 
 

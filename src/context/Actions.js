@@ -12,6 +12,12 @@ export const FETCH_POPULARSERIES_FAILURE = 'FETCH_POPULARSERIES_FAILURE';
 export const FETCH_TOPRATEDSERIES_STARTED = 'FETCH_TOPRATEDSERIES_STARTED';
 export const FETCH_TOPRATEDSERIES_SUCCESS = 'FETCH_TOPRATEDSERIES_SUCCESS';
 export const FETCH_TOPRATEDSERIES_FAILURE = 'FETCH_TOPRATEDSERIES_FAILURE';
+export const FETCH_DETAILS_STARTED = 'FETCH_DETAILS_STARTED';
+export const FETCH_DETAILS_SUCCESS = 'FETCH_DETAILS_SUCCESS';
+export const FETCH_DETAILS_FAILURE = 'FETCH_DETAILS_FAILURE';
+export const FETCH_SERIESDETAILS_STARTED = 'FETCH_SERIESDETAILS_STARTED';
+export const FETCH_SERIESDETAILS_SUCCESS = 'FETCH_SERIESDETAILS_SUCCESS';
+export const FETCH_SERIESDETAILS_FAILURE = 'FETCH_SERIESDETAILS_FAILURE';
 
 export function fetchPopularMovies(url, request, dispatch) {
     //função ser executado em caso de sucesso
@@ -44,6 +50,23 @@ export function fetchTopRatedSeries(url, request, dispatch) {
   const failure = (err) => dispatch(fetchTopRatedSeriesFailure(err.message));
   makeHTTPRequest(url, request, success, failure);
 }
+
+export function fetchDetails(url, request, dispatch) {
+  //função ser executado em caso de sucesso
+  const success = (res) => dispatch(fetchDetailsSuccess(res));
+  //função ser executado em caso de falha
+  const failure = (err) => dispatch(fetchDetailsFailure(err.message));
+  makeHTTPRequest(url, request, success, failure);
+}
+
+export function fetchSeriesDetails(url, request, dispatch) {
+  //função ser executado em caso de sucesso
+  const success = (res) => dispatch(fetchSeriesDetailsSuccess(res));
+  //função ser executado em caso de falha
+  const failure = (err) => dispatch(fetchSeriesDetailsFailure(err.message));
+  makeHTTPRequest(url, request, success, failure);
+}
+
 
 
 
@@ -141,5 +164,46 @@ export function fetchTopRatedSeriesFailure(message) {
     payload: {
       error: message
     }
+  }
+}
+
+export function fetchDetailsStarted(id) {
+	return {
+    	type: FETCH_DETAILS_STARTED,
+      id: id,
+  	}
+}
+
+export function fetchDetailsSuccess(details) {
+  return {
+    type: FETCH_DETAILS_SUCCESS,
+    data: {...details}
+  }
+}
+export function fetchDetailsFailure(message) {
+  return {
+    type: FETCH_DETAILS_FAILURE,
+    error: message,
+    data: {},
+  }
+}
+export function fetchSeriesDetailsStarted(id) {
+	return {
+    	type: FETCH_SERIESDETAILS_STARTED,
+      id: id,
+  	}
+}
+
+export function fetchSeriesDetailsSuccess(details) {
+  return {
+    type: FETCH_SERIESDETAILS_SUCCESS,
+    data: {...details}
+  }
+}
+export function fetchSeriesDetailsFailure(message) {
+  return {
+    type: FETCH_SERIESDETAILS_FAILURE,
+    error: message,
+    data: {},
   }
 }

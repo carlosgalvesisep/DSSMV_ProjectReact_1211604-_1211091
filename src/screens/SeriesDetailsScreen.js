@@ -4,12 +4,12 @@ import {StyleSheet, View,ScrollView, Text, Image, TouchableOpacity} from 'react-
 import {API_KEY, BASE_URL, IMAGE_URL } from '../services/ApiHandler';
 import AppContext from '../context/AppContext';
 import {
-  fetchDetails,
-  fetchDetailsStarted,
+  fetchSeriesDetails,
+  fetchSeriesDetailsStarted,
 } from '../context/Actions';
 
 
-function DetailsScreen(props) {
+function SeriesDetailsScreen(props) {
   const{state, dispatch} = useContext(AppContext);
   const {route} = props;
   const {details} = state;
@@ -18,10 +18,10 @@ function DetailsScreen(props) {
   const{navigation} = props;
 
   useEffect(() =>{
-    dispatch(fetchDetailsStarted(id));
-    const url = BASE_URL + '/movie/' + id + '?api_key=' + API_KEY;
+    dispatch(fetchSeriesDetailsStarted(id));
+    const url = BASE_URL + '/tv/' + id + '?api_key=' + API_KEY;
     const request = {};
-    fetchDetails(url, request, dispatch)
+    fetchSeriesDetails(url, request, dispatch)
   }, [])
 
 
@@ -59,12 +59,12 @@ function DetailsScreen(props) {
                     borderColor: 'white',
                   }}
                 ></Image>
-                <Text style={styles.title}>{data.title}</Text>
+                <Text style={styles.title}>{data.name}</Text>
                 <Text style={styles.titleOverview}> Overview </Text>
                 <Text style={styles.textOverview}> {data.overview}</Text>
-                <Text style={styles.textTitle}> Language:         Rating:           Release:              Duration:</Text>          
-                <Text style ={styles.textLanguage}> {data.original_language}                <Text> {data.vote_average} </Text>       <Text> {data.release_date} </Text>       <Text> {data.runtime} min </Text> </Text> 
-
+                <Text style={styles.textTitle}> Language:         Seasons:           Release:              Episodes:</Text>          
+                <Text style ={styles.textLanguage}> {data.original_language}                       <Text> {data.number_of_seasons} </Text>            <Text> {data.first_air_date} </Text>          <Text> {data.number_of_episodes} ep </Text> </Text> 
+                <Text style={styles.textTitle}> Available on: {data.homepage}</Text>
                 <TouchableOpacity style={styles.button}>
                 <Text style={styles.buttonText}> RATE IT </Text>
                 </TouchableOpacity>
@@ -156,5 +156,5 @@ buttonText: {
 
 });
 
-  export default DetailsScreen;
+  export default SeriesDetailsScreen;
   

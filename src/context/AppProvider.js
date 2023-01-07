@@ -24,6 +24,11 @@ const initialState = {
     loading: true,
     error: null,
     data: [],
+  },
+  details: {
+    loading: true,
+    error: null,
+    data: {},
   }
 
 

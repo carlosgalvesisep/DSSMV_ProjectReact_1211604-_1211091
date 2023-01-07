@@ -12,6 +12,12 @@ import {
     FETCH_TOPRATEDSERIES_STARTED,
     FETCH_TOPRATEDSERIES_SUCCESS,
     FETCH_TOPRATEDSERIES_FAILURE,
+    FETCH_DETAILS_STARTED,
+    FETCH_DETAILS_SUCCESS,
+    FETCH_DETAILS_FAILURE,
+    FETCH_SERIESDETAILS_STARTED,
+    FETCH_SERIESDETAILS_SUCCESS,
+    FETCH_SERIESDETAILS_FAILURE,
   } from './Actions'
   
   
@@ -128,6 +134,60 @@ import {
               loading: false,
               error: action.payload.error,
               data: [],
+            }
+          }
+          case FETCH_DETAILS_STARTED:
+        return {
+          ...state,
+          details: {
+            loading: true,
+            error: null,
+            data: {},
+          }
+        }
+      case FETCH_DETAILS_SUCCESS:
+        return {
+          ...state,
+          details: {
+            loading: false,
+            error: null,
+            data: {...action.data},
+          }
+        }
+      case FETCH_DETAILS_FAILURE:
+        return {
+          ...state,
+          details: {
+            loading: false,
+            error: action.error,
+            data: {},
+          }
+        }
+        case FETCH_SERIESDETAILS_STARTED:
+          return {
+            ...state,
+            details: {
+              loading: true,
+              error: null,
+              data: {},
+            }
+          }
+        case FETCH_SERIESDETAILS_SUCCESS:
+          return {
+            ...state,
+            details: {
+              loading: false,
+              error: null,
+              data: {...action.data},
+            }
+          }
+        case FETCH_SERIESDETAILS_FAILURE:
+          return {
+            ...state,
+            details: {
+              loading: false,
+              error: action.error,
+              data: {},
             }
           }
       default:
