@@ -29,17 +29,15 @@ const initialState = {
     loading: true,
     error: null,
     data: {},
-  }
+  },
+  guestSession: {
+    loading: true,
+    error: null,
+    data: {},
+  },
 
 
 };
-/*
- const movie_labels = {
-  results: [],
-  id: 0,
-  original_title: "Title",
-  poster_path: "/94xxm5701CzOdJdUEdIuwqZaowx.jpg",
-}; */
 
 const AppProvider = (props) => {
   const [state, dispatch] = useReducer(reducer, initialState);

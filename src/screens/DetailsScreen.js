@@ -22,6 +22,7 @@ function DetailsScreen(props) {
     const url = BASE_URL + '/movie/' + id + '?api_key=' + API_KEY;
     const request = {};
     fetchDetails(url, request, dispatch)
+    console.log(JSON.stringify(data))
   }, [])
 
 
