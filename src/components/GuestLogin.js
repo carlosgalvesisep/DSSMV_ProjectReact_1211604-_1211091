@@ -8,6 +8,7 @@ import {AsyncStorage} from 'react-native';
 import { useState } from 'react/cjs/react.production.min';
 
 export const GuestLogin = () => {
+
     const { state, dispatch } = useContext(AppContext);
     const { guestSession } = state;
     const { loading, error, data } = guestSession; 

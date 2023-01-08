@@ -79,6 +79,7 @@ export default function App() {
 
     
 <AppProvider> 
+
     <NavigationContainer>
       <Stack.Navigator>
       <Stack.Screen

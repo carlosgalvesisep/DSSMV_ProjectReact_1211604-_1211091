@@ -38,9 +38,17 @@ export const CREATE_REQUESTTOKEN_STARTED = 'CREATE_REQUESTTOKEN_STARTED';
 export const CREATE_REQUESTTOKEN_SUCCESS = 'CREATE_REQUESTTOKEN_SUCCESS';
 export const CREATE_REQUESTTOKEN_FAILURE = 'CREATE_REQUESTTOKEN_FAILURE';
 
+export const CREATE_LOGINSESSION_STARTED = 'CREATE_LOGINSESSION_STARTED';
+export const CREATE_LOGINSESSION_SUCCESS = 'CREATE_LOGINSESSION_SUCCESS';
+export const CREATE_LOGINSESSION_FAILURE = 'CREATE_LOGINSESSION_FAILURE';
+
 export const CREATE_GUESTSESSION_STARTED = 'CREATE_GUESTSESSION_STARTED';
 export const CREATE_GUESTSESSION_SUCCESS = 'CREATE_GUESTSESSION_SUCCESS';
 export const CREATE_GUESTSESSION_FAILURE = 'CREATE_GUESTSESSION_FAILURE';
+
+export const POST_MOVIERATING_STARTED = 'POST_MOVIERATING_STARTED';
+export const POST_MOVIERATING_SUCCESS = 'POST_MOVIERATING_SUCCESS';
+export const POST_MOVIERATING_FAILURE = 'POST_MOVIERATING_FAILURE';
 
 
 export function fetchPopularMovies(url, request, dispatch) {
@@ -130,6 +138,14 @@ export function createRequestToken(url, request, dispatch) {
   makeHTTPRequest(url, request, success, failure);
 }
 
+export function createLoginSession(url, request, dispatch) {
+  //função ser executado em caso de sucesso
+  const success = (res) => dispatch(createLoginSessionSuccess(res));
+  //função ser executado em caso de falha
+  const failure = (err) => dispatch(createLoginSessionFailure(err.message));
+  makeHTTPRequest(url, request, success, failure);
+}
+
 export function createGuestSession(url, request, dispatch) {
   //função ser executado em caso de sucesso
   const success = (res) => dispatch(createGuestSessionSuccess(res));
@@ -138,6 +154,13 @@ export function createGuestSession(url, request, dispatch) {
   makeHTTPRequest(url, request, success, failure);
 }
 
+export function postMovieRating (url, request, dispatch) {
+  //função ser executado em caso de sucesso
+  const success = (res) => dispatch(createMovieRatingSuccess(res));
+  //função ser executado em caso de falha
+  const failure = (err) => dispatch(createMovieRatingFailure(err.message));
+  makeHTTPRequest(url, request, success, failure);
+}
 
 
 
@@ -383,7 +406,7 @@ export function createRequestTokenSuccess(requestToken) {
   return {
     type: CREATE_REQUESTTOKEN_SUCCESS,
     payload: {
-      data: [...requestToken]
+      data: {...requestToken}
     }
   }
 }
@@ -396,6 +419,29 @@ export function createRequestTokenFailure(message) {
   }
 }
 
+//Session with login
+export function createLoginSessionStarted() {
+	return {
+    	type: CREATE_LOGINSESSION_STARTED,
+  	}
+}
+
+export function createLoginSessionSuccess(loginSession) {
+  return {
+    type: CREATE_LOGINSESSION_SUCCESS,
+    payload: {
+      data: {...loginSession}
+    }
+  }
+}
+export function createLoginSessionFailure(message) {
+  return {
+    type: CREATE_LOGINSESSION_FAILURE,
+    payload: {
+      error: message
+    }
+  }
+}
 
 //Guest Session
 export function createGuestSessionStarted() {
@@ -415,6 +461,31 @@ export function createGuestSessionSuccess(guestSession) {
 export function createGuestSessionFailure(message) {
   return {
     type: CREATE_GUESTSESSION_FAILURE,
+    payload: {
+      error: message
+    }
+  }
+}
+
+
+//Ratings
+export function postMovieRatingStarted() {
+	return {
+    	type: POST_MOVIERATING_STARTED,
+  	}
+}
+
+export function postMovieRatingSuccess(movieRating) {
+  return {
+    type: POST_MOVIERATING_SUCCESS,
+    payload: {
+      data: {...movieRating}
+    }
+  }
+}
+export function postMovieRatingFailure(message) {
+  return {
+    type: POST_MOVIERATING_FAILURE,
     payload: {
       error: message
     }

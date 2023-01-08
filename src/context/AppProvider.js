@@ -50,12 +50,22 @@ const initialState = {
     error: null,
     data: {},
   },
+  loginSession: {
+    loading: true,
+    error: null,
+    data: {},
+  },
   guestSession: {
     loading: true,
     error: null,
     data: {},
   },
   requestToken: {
+    loading: true,
+    error: null,
+    data: {},
+  },
+  movieRating: {
     loading: true,
     error: null,
     data: [],

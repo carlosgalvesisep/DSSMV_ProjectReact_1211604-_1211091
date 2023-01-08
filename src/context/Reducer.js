@@ -38,9 +38,16 @@ import {
     CREATE_REQUESTTOKEN_FAILURE,
     CREATE_REQUESTTOKEN_SUCCESS,
 
+    CREATE_LOGINSESSION_STARTED,
+    CREATE_LOGINSESSION_SUCCESS,
+    CREATE_LOGINSESSION_FAILURE,
     CREATE_GUESTSESSION_STARTED,
     CREATE_GUESTSESSION_SUCCESS,
     CREATE_GUESTSESSION_FAILURE,
+
+    POST_MOVIERATING_STARTED,
+    POST_MOVIERATING_SUCCESS,
+    POST_MOVIERATING_FAILURE,
 
   } from './Actions'
   
@@ -333,7 +340,7 @@ import {
 					requestToken: {
 					loading: true,
 					error: null,
-					data: []
+					data: {}
 					}
 				}
 			case CREATE_REQUESTTOKEN_SUCCESS:
@@ -342,7 +349,7 @@ import {
 					requestToken: {
 					loading: false,
 					error: null,
-					data: [...action.payload.data]
+					data: {...action.payload.data}
 					}
 				}
 			case CREATE_REQUESTTOKEN_FAILURE:
@@ -351,9 +358,36 @@ import {
 					requestToken: {
 					loading: false,
 					error: action.payload.error,
-					data: [],
+					data: {},
 					}
 				}
+        case CREATE_LOGINSESSION_STARTED:
+          return {
+            ...state,
+            loginSession: {
+            loading: true,
+            error: null,
+            data: {}
+            }
+          }
+        case CREATE_LOGINSESSION_SUCCESS:
+          return {
+            ...state,
+            loginSession: {
+            loading: false,
+            error: null,
+            data: {...action.payload.data}
+            }
+          }
+        case CREATE_LOGINSESSION_FAILURE:
+          return {
+            ...state,
+            loginSession: {
+            loading: false,
+            error: action.payload.error,
+            data: {},
+            }
+          }
 			case CREATE_GUESTSESSION_STARTED:
 				return {
 					...state,
@@ -381,6 +415,36 @@ import {
 					data: {},
 					}
 				}
+
+        case POST_MOVIERATING_STARTED:
+          return {
+            ...state,
+            movieRating: {
+            loading: true,
+            error: null,
+            data: []
+            }
+          }
+        case POST_MOVIERATING_SUCCESS:
+          return {
+            ...state,
+            movieRating: {
+            loading: false,
+            error: null,
+            data: [...action.payload.data]
+            }
+          }
+        case POST_MOVIERATING_FAILURE:
+          return {
+            ...state,
+            movieRating: {
+            loading: false,
+            error: action.payload.error,
+            data: [],
+            }
+          }
+
+
       default:
         return state
     }
