@@ -1,11 +1,17 @@
 import React from 'react';
-import {useState} from 'react';
+import {useState,useContext, useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import useWindowDimensions from 'react-native/Libraries/Utilities/useWindowDimensions';
 import Input from '../components/Input';
 import Button from '../components/Button';
+import { GuestLogin } from '../components/GuestLogin';
+import AppContext from '../context/AppContext';
+import { BASE_URL, API_KEY } from '../services/ApiHandler';
+import { createGuestSession, createGuestSessionStarted} from '../context/Actions';
+
 
 function LogInScreen () {
+
     const {height} = useWindowDimensions();
 
     const [username, setUsername] = useState('');
@@ -16,7 +22,8 @@ function LogInScreen () {
     };
 
     const onGuestLoginPressed = () => {
-        console.warn("Como diria o outro: 'Not yet Implemented' ");
+        
+        return(<GuestLogin/>)
     };
 
     return (
@@ -25,7 +32,8 @@ function LogInScreen () {
             <Input placeholder="Password" value={password} setValue={setPassword} isSecure/>
             <Button buttonText="Log in" onPress={onLogInPressed}/>
             <Button buttonText="Log in as Guest" onPress={onGuestLoginPressed}/>
-
+            <GuestLogin/>
+            
 
         </View>
     )

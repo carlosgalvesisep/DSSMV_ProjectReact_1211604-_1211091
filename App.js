@@ -16,14 +16,13 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { acc } from 'react-native-reanimated';
 import SeriesScreen from './src/screens/SeriesScreen';
 import SeriesDetailsScreen from './src/screens/SeriesDetailsScreen';
-import WatchListScreen from './src/screens/WatchListScreen';
-
 
 
 
 
 function Home() {
   return (
+    
     <Tab.Navigator
     tabBarOptions={{
       activeTintColor: 'orange',
