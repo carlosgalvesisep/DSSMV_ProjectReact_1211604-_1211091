@@ -3,6 +3,9 @@ import { makeHTTPRequest } from "../services/ApiHandler";
 export const FETCH_POPULARMOVIES_STARTED = 'FETCH_POPULARMOVIES_STARTED';
 export const FETCH_POPULARMOVIES_SUCCESS = 'FETCH_POPULARMOVIES_SUCCESS';
 export const FETCH_POPULARMOVIES_FAILURE = 'FETCH_POPULARMOVIES_FAILURE';
+export const FETCH_LATESTMOVIES_STARTED = 'FETCH_LATESTMOVIES_STARTED';
+export const FETCH_LATESTMOVIES_SUCCESS = 'FETCH_LATESTMOVIES_SUCCESS';
+export const FETCH_LATESTMOVIES_FAILURE = 'FETCH_LATESTMOVIES_FAILURE';
 export const FETCH_UPCOMINGMOVIES_STARTED = 'FETCH_UPCOMINGMOVIES_STARTED';
 export const FETCH_UPCOMINGMOVIES_SUCCESS = 'FETCH_UPCOMINGMOVIES_SUCCESS';
 export const FETCH_UPCOMINGMOVIES_FAILURE = 'FETCH_UPCOMINGMOVIES_FAILURE';
@@ -12,6 +15,9 @@ export const FETCH_POPULARSERIES_FAILURE = 'FETCH_POPULARSERIES_FAILURE';
 export const FETCH_TOPRATEDSERIES_STARTED = 'FETCH_TOPRATEDSERIES_STARTED';
 export const FETCH_TOPRATEDSERIES_SUCCESS = 'FETCH_TOPRATEDSERIES_SUCCESS';
 export const FETCH_TOPRATEDSERIES_FAILURE = 'FETCH_TOPRATEDSERIES_FAILURE';
+export const FETCH_ONAIRSERIES_STARTED = 'FETCH_ONAIRSERIES_STARTED';
+export const FETCH_ONAIRSERIES_SUCCESS = 'FETCH_ONAIRSERIES_SUCCESS';
+export const FETCH_ONAIRSERIES_FAILURE = 'FETCH_ONAIRSERIES_FAILURE';
 export const FETCH_DETAILS_STARTED = 'FETCH_DETAILS_STARTED';
 export const FETCH_DETAILS_SUCCESS = 'FETCH_DETAILS_SUCCESS';
 export const FETCH_DETAILS_FAILURE = 'FETCH_DETAILS_FAILURE';
@@ -25,6 +31,14 @@ export function fetchPopularMovies(url, request, dispatch) {
     //função ser executado em caso de falha
     const failure = (err) => dispatch(fetchPopularMoviesFailure(err.message));
     makeHTTPRequest(url, request, success, failure);
+}
+
+export function fetchLatestMovies(url, request, dispatch) {
+  //função ser executado em caso de sucesso
+  const success = (res) => dispatch(fetchLatestMoviesSuccess(res));
+  //função ser executado em caso de falha
+  const failure = (err) => dispatch(fetchLatestMoviesFailure(err.message));
+  makeHTTPRequest(url, request, success, failure);
 }
 
 export function fetchUpcomingMovies(url, request, dispatch) {
@@ -48,6 +62,14 @@ export function fetchTopRatedSeries(url, request, dispatch) {
   const success = (res) => dispatch(fetchTopRatedSeriesSuccess(res));
   //função ser executado em caso de falha
   const failure = (err) => dispatch(fetchTopRatedSeriesFailure(err.message));
+  makeHTTPRequest(url, request, success, failure);
+}
+
+export function fetchOnAirSeries(url, request, dispatch) {
+  //função ser executado em caso de sucesso
+  const success = (res) => dispatch(fetchOnAirSeriesSuccess(res));
+  //função ser executado em caso de falha
+  const failure = (err) => dispatch(fetchOnAirSeriesFailure(err.message));
   makeHTTPRequest(url, request, success, failure);
 }
 
@@ -90,14 +112,35 @@ export function fetchPopularMoviesSuccess(popularMovies) {
 
 export function fetchPopularMoviesFailure(message) {
     return {
-      	type: FETCH_POPULARMOVIES_FAILURE,
+      	type: FETCH_LATESTMOVIES_FAILURE,
       	payload: {
         	error: message
       	}
     }
 }
+export function fetchLatestMoviesStarted() {
+  return {
+    type: FETCH_LATESTMOVIES_STARTED,
+  }
+}
 
+export function fetchLatestMoviesSuccess(latestMovies) {
+  return {
+    type: FETCH_LATESTMOVIES_SUCCESS,
+    payload: {
+      data: latestMovies.results
+    }
+  }
+}
 
+export function fetchLatestMoviesFailure(message) {
+  return {
+      type: FETCH_LATESTMOVIES_FAILURE,
+      payload: {
+        error: message
+      }
+  }
+}
 
 export function fetchUpcomingMoviesStarted() {
 	return {
@@ -138,6 +181,28 @@ export function fetchPopularSeriesSuccess(popularSeries) {
 export function fetchPopularSeriesFailure(message) {
   return {
     type: FETCH_POPULARSERIES_FAILURE,
+    payload: {
+      error: message
+    }
+  }
+}
+export function fetchOnAirSeriesStarted() {
+	return {
+    	type: FETCH_ONAIRERIES_STARTED,
+  	}
+}
+
+export function fetchOnAirSeriesSuccess(onairSeries) {
+  return {
+    type: FETCH_ONAIRSERIES_SUCCESS,
+    payload: {
+      data: onairSeries.results
+    }
+  }
+}
+export function fetchOnAirSeriesFailure(message) {
+  return {
+    type: FETCH_ONAIRERIES_FAILURE,
     payload: {
       error: message
     }

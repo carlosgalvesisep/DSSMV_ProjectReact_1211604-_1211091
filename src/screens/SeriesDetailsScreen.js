@@ -60,6 +60,7 @@ function SeriesDetailsScreen(props) {
                   }}
                 ></Image>
                 <Text style={styles.title}>{data.name}</Text>
+                <Text style={styles.undertitle}> {data.tagline} </Text>
                 <Text style={styles.titleOverview}> Overview </Text>
                 <Text style={styles.textOverview}> {data.overview}</Text>
                 <Text style={styles.textTitle}> Language:         Seasons:           Release:              Episodes:</Text>          
@@ -106,6 +107,13 @@ const styles = StyleSheet.create({
     fontSize: 30,
     marginTop: 16,
     alignSelf: 'center',
+},
+undertitle: {
+  color: "black",
+  fontWeight: "500",
+  fontSize: 13,
+  marginTop: 10,
+  alignSelf: 'center',
 },
 titleOverview: {
   color: "black",

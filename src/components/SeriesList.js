@@ -6,22 +6,20 @@ import { useNavigation } from '@react-navigation/native';
 import {
   fetchPopularSeries,
   fetchPopularSeriesStarted,
-  fetchTopRatedSeries,
-  fetchTopRatedSeriesStarted,
 } from '../context/Actions';
 
-const SeriesList = ({requestParameter}) => {
+const SeriesList = () => {
   const {state, dispatch} = useContext(AppContext);
   const {popularSeries} = state;
-    ({loading, error, data} = popularSeries);
-  const url = `${BASE_URL}/$tv/popular?api_key=${API_KEY}`;
+  ({loading, error, data} = popularSeries);
+  const url = `${BASE_URL}/tv/popular?api_key=${API_KEY}`;
   const request = {};
 
 
   useEffect(() => {
     dispatch(fetchPopularSeriesStarted);
 
-    fetchPopularSeries;
+    fetchPopularSeries(url, request, dispatch);
   }, []);
 
   if (loading === true) {
@@ -39,10 +37,10 @@ const SeriesList = ({requestParameter}) => {
       );
     } else {
       if (data.length > 0) {
-        const navigation = useNavigation();
+      const navigation = useNavigation();
         return (
           <FlatList
-          vertical
+            horizontal
             data={data}
             keyExtractor={item => item.id}
             renderItem={({item}) => 
@@ -86,8 +84,8 @@ const styles = StyleSheet.create({
     marginBottom: 200,
   },
   image: {
-    width: 200,
-    height: 300,
+    width: 150,
+    height: 200,
     marginBottom: 5,
     alignSelf: 'center',
   },

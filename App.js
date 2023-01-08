@@ -9,13 +9,15 @@ const Tab = createBottomTabNavigator();
 
 
 import LogInScreen from './src/screens/LoginScreen';
-import HomeScreen from './src/screens/HomeScreen';
+import MoviesScreen from './src/screens/MoviesScreen';
 import DetailsScreen from './src/screens/DetailsScreen';
 import AccountScreen from './src/screens/AccountScreen';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { acc } from 'react-native-reanimated';
 import SeriesScreen from './src/screens/SeriesScreen';
 import SeriesDetailsScreen from './src/screens/SeriesDetailsScreen';
+import WatchListScreen from './src/screens/WatchListScreen';
+
 
 
 
@@ -26,6 +28,8 @@ function Home() {
     tabBarOptions={{
       activeTintColor: 'orange',
       tabBarInactiveTintColor: 'gray',
+      style: { ...styles.tabBar
+      }
     }}>
       <Tab.Screen name="Login" component={LogInScreen} 
             options={{
@@ -41,7 +45,14 @@ function Home() {
           <MaterialCommunityIcons name="account" color={color} size={size} />
         ),
       }}/>
-      <Tab.Screen name="Movies" component={HomeScreen} 
+       <Tab.Screen name="Watchlist" component={WatchListScreen} 
+      options={{
+        tabBarLabel: 'WatchList',
+        tabBarIcon: ({color, size}) => (
+        <MaterialCommunityIcons name="folder-star-outline" color={color} size={size} />
+        ),
+      }}/>
+      <Tab.Screen name="Movies" component={MoviesScreen} 
         options={{
           tabBarLabel: 'Movies',
           tabBarIcon: ({color, size}) => (
@@ -55,6 +66,7 @@ function Home() {
           <MaterialCommunityIcons name="television-classic" color={color} size={size} />
         ),
       }}/>
+     
     </Tab.Navigator>
   );
 }
@@ -74,8 +86,8 @@ export default function App() {
           options={{ headerShown: false }}
         />
     <Stack.Screen
-      name="HomeScreen"
-      component={HomeScreen}/>
+      name="MoviesScreen"
+      component={MoviesScreen}/>
     <Stack.Screen
       name="LoginScreen"
       component={LogInScreen}/>
@@ -84,13 +96,15 @@ export default function App() {
       component={SeriesScreen}/>
     <Stack.Screen
       name="DetailsScreen"
-      component={DetailsScreen}/>
+      component={DetailsScreen}
+      options={{ headerShown: false }}/>
       <Stack.Screen
       name="AccountScreen"
       component={AccountScreen}/>
       <Stack.Screen
       name="SeriesDetailsScreen"
-      component={SeriesDetailsScreen}/>
+      component={SeriesDetailsScreen}
+      options={{ headerShown: false }}/>
       </Stack.Navigator>
     </NavigationContainer> 
     </AppProvider> 
@@ -98,8 +112,14 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  root: {
-    backgroundColor: 'grey',
-    flex: 1,
-  },
+  tabBar: {
+    position: 'absolute',
+    marginBottom: 25,
+    marginLeft: 20,
+    marginRight: 20,
+    elevation: 0,
+    borderRadius: 15,
+    height: 90,
+  }
+
 });

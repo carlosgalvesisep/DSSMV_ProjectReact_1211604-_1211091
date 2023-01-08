@@ -29,7 +29,17 @@ const initialState = {
     loading: true,
     error: null,
     data: {},
-  }
+  },
+  latestMovies: {
+    loading: true,
+    error: null,
+    data: {},
+  },
+  onairSeries: {
+    loading: true,
+    error: null,
+    data: {},
+  },
 
 
 };

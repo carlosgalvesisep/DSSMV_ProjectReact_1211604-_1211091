@@ -2,24 +2,24 @@ import React, {useContext, useEffect} from 'react';
 import AppContext from '../context/AppContext';
 import {View, Text, FlatList, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {BASE_URL, API_KEY, IMAGE_URL} from '../services/ApiHandler';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import {
-  fetchPopularMovies,
-  fetchPopularMoviesStarted,
+  fetchTopRatedSeries,
+  fetchTopRatedSeriesStarted,
 } from '../context/Actions';
 
-const MoviesList = () => {
+const TopRatedSeriesList = () => {
   const {state, dispatch} = useContext(AppContext);
-  const {popularMovies} = state;
-  ({loading, error, data} = popularMovies);
-  const url = `${BASE_URL}/movie/popular?api_key=${API_KEY}`;
+  const {topRatedSeries} = state;
+  ({loading, error, data} = topRatedSeries);
+  const url = `${BASE_URL}/tv/top_rated?api_key=${API_KEY}`;
   const request = {};
 
 
   useEffect(() => {
-    dispatch(fetchPopularMoviesStarted);
+    dispatch(fetchTopRatedSeriesStarted);
 
-    fetchPopularMovies(url, request, dispatch);
+    fetchTopRatedSeries(url, request, dispatch);
   }, []);
 
   if (loading === true) {
@@ -37,31 +37,28 @@ const MoviesList = () => {
       );
     } else {
       if (data.length > 0) {
-        
-const navigation = useNavigation();
+      const navigation = useNavigation();
         return (
           <FlatList
             horizontal
             data={data}
             keyExtractor={item => item.id}
-            renderItem={({item}) =>
-          (
-            <TouchableOpacity 
+            renderItem={({item}) => 
+            (
+              <TouchableOpacity 
             onPress={() => 
-            navigation.navigate('DetailsScreen',{data: item.id})}>       
-          
+            navigation.navigate('SeriesDetailsScreen',{data: item.id})}>  
               <View style={styles.view}>
                 <Image
                   style={styles.image}
                   source={{uri: IMAGE_URL + item.poster_path}}
                   resizeMode="cover"
-                
                 />
-                <Text style={styles.text}> {item.title}</Text>
+
+                <Text style={styles.text}> {item.name}</Text>
               </View>
               </TouchableOpacity>
-          )
-            }
+            )}
           />
         );
       } else {
@@ -87,15 +84,15 @@ const styles = StyleSheet.create({
     marginBottom: 200,
   },
   image: {
-    width: 150,
+  width: 150,
     height: 200,
     marginBottom: 5,
     alignSelf: 'center',
   },
   text: {
     color: 'black',
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
 });
 
-export default MoviesList;
+export default TopRatedSeriesList;

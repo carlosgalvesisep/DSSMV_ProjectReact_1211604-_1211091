@@ -50,16 +50,10 @@ function DetailsScreen(props) {
                     height: 250,
                     uri: 'https://image.tmdb.org/t/p/w500' + data.poster_path
                   }}
-                  style={{
-                    marginTop: 40,
-                    borderRadius: 10,
-                    overflow: 'hidden',
-                    borderWidth: 0.5,
-                    alignSelf: 'center',
-                    borderColor: 'white',
-                  }}
+                  style={styles.image}
                 ></Image>
                 <Text style={styles.title}>{data.title}</Text>
+                <Text style={styles.undertitle}> {data.tagline} </Text>
                 <Text style={styles.titleOverview}> Overview </Text>
                 <Text style={styles.textOverview}> {data.overview}</Text>
                 <Text style={styles.textTitle}> Language:         Rating:           Release:              Duration:</Text>          
@@ -107,6 +101,13 @@ const styles = StyleSheet.create({
     marginTop: 16,
     alignSelf: 'center',
 },
+undertitle: {
+  color: "black",
+  fontWeight: "500",
+  fontSize: 13,
+  marginTop: 10,
+  alignSelf: 'center',
+},
 titleOverview: {
   color: "black",
   fontWeight: "500",
@@ -125,6 +126,14 @@ buttonText: {
   fontSize: 15,
   marginTop: 12,
 
+},
+image:  { 
+marginTop: 40,
+borderRadius: 10,
+overflow: 'hidden',
+borderWidth: 0.5,
+alignSelf: 'center',
+borderColor: 'white',
 },
   textLanguage: {
     color: 'grey',
