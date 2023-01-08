@@ -15,7 +15,17 @@ const initialState = {
     error: null,
     data: [],
   },
+  topRatedMovies: {
+    loading: true,
+    error: null,
+    data: [],
+  },
   popularSeries: {
+    loading: true,
+    error: null,
+    data: [],
+  },
+  todaySeries: {
     loading: true,
     error: null,
     data: [],
@@ -29,9 +39,27 @@ const initialState = {
     loading: true,
     error: null,
     data: {},
-  }
-
-
+  },
+  latestMovies: {
+    loading: true,
+    error: null,
+    data: {},
+  },
+  onairSeries: {
+    loading: true,
+    error: null,
+    data: {},
+  },
+  guestSession: {
+    loading: true,
+    error: null,
+    data: {},
+  },
+  requestToken: {
+    loading: true,
+    error: null,
+    data: [],
+  },
 };
 
 const AppProvider = (props) => {

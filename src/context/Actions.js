@@ -9,13 +9,23 @@ export const FETCH_LATESTMOVIES_FAILURE = 'FETCH_LATESTMOVIES_FAILURE';
 export const FETCH_UPCOMINGMOVIES_STARTED = 'FETCH_UPCOMINGMOVIES_STARTED';
 export const FETCH_UPCOMINGMOVIES_SUCCESS = 'FETCH_UPCOMINGMOVIES_SUCCESS';
 export const FETCH_UPCOMINGMOVIES_FAILURE = 'FETCH_UPCOMINGMOVIES_FAILURE';
+export const FETCH_TOPRATEDMOVIES_STARTED = 'FETCH_TOPRATEDMOVIES_STARTED';
+export const FETCH_TOPRATEDMOVIES_SUCCESS = 'FETCH_TOPRATEDMOVIES_SUCCESS';
+export const FETCH_TOPRATEDMOVIES_FAILURE = 'FETCH_TOPRATEDMOVIES_FAILURE';
 
 export const FETCH_POPULARSERIES_STARTED = 'FETCH_POPULARSERIES_STARTED';
 export const FETCH_POPULARSERIES_SUCCESS = 'FETCH_POPULARSERIES_SUCCESS';
 export const FETCH_POPULARSERIES_FAILURE = 'FETCH_POPULARSERIES_FAILURE';
+export const FETCH_TODAYSERIES_STARTED = 'FETCH_TODAYSERIES_STARTED';
+export const FETCH_TODAYSERIES_SUCCESS = 'FETCH_TODAYSERIES_SUCCESS';
+export const FETCH_TODAYSERIES_FAILURE = 'FETCH_TODAYSERIES_FAILURE';
 export const FETCH_TOPRATEDSERIES_STARTED = 'FETCH_TOPRATEDSERIES_STARTED';
 export const FETCH_TOPRATEDSERIES_SUCCESS = 'FETCH_TOPRATEDSERIES_SUCCESS';
 export const FETCH_TOPRATEDSERIES_FAILURE = 'FETCH_TOPRATEDSERIES_FAILURE';
+export const FETCH_ONAIRSERIES_STARTED = 'FETCH_ONAIRSERIES_STARTED';
+export const FETCH_ONAIRSERIES_SUCCESS = 'FETCH_ONAIRSERIES_SUCCESS';
+export const FETCH_ONAIRSERIES_FAILURE = 'FETCH_ONAIRSERIES_FAILURE';
+
 export const FETCH_DETAILS_STARTED = 'FETCH_DETAILS_STARTED';
 export const FETCH_DETAILS_SUCCESS = 'FETCH_DETAILS_SUCCESS';
 export const FETCH_DETAILS_FAILURE = 'FETCH_DETAILS_FAILURE';
@@ -57,6 +67,14 @@ export function fetchUpcomingMovies(url, request, dispatch) {
     makeHTTPRequest(url, request, success, failure);
 }
 
+export function fetchTopRatedMovies(url, request, dispatch) {
+  //função ser executado em caso de sucesso
+  const success = (res) => dispatch(fetchTopRatedMoviesSuccess(res));
+  //função ser executado em caso de falha
+  const failure = (err) => dispatch(fetchTopRatedMoviesFailure(err.message));
+  makeHTTPRequest(url, request, success, failure);
+}
+
 export function fetchPopularSeries(url, request, dispatch) {
   //função ser executado em caso de sucesso
   const success = (res) => dispatch(fetchPopularSeriesSuccess(res));
@@ -81,6 +99,13 @@ export function fetchOnAirSeries(url, request, dispatch) {
   makeHTTPRequest(url, request, success, failure);
 }
 
+export function fetchTodaySeries(url, request, dispatch) {
+  //função ser executado em caso de sucesso
+  const success = (res) => dispatch(fetchTodaySeriesSuccess(res));
+  //função ser executado em caso de falha
+  const failure = (err) => dispatch(fetchTodaySeriesFailure(err.message));
+  makeHTTPRequest(url, request, success, failure);
+}
 export function fetchDetails(url, request, dispatch) {
   //função ser executado em caso de sucesso
   const success = (res) => dispatch(fetchDetailsSuccess(res));
@@ -112,6 +137,7 @@ export function createGuestSession(url, request, dispatch) {
   const failure = (err) => dispatch(createGuestSessionFailure(err.message));
   makeHTTPRequest(url, request, success, failure);
 }
+
 
 
 
@@ -187,6 +213,29 @@ export function fetchUpcomingMoviesFailure(message) {
   }
 }
 
+export function fetchTopRatedMoviesStarted() {
+	return {
+    	type: FETCH_TOPRATEDMOVIES_STARTED,
+  	}
+}
+
+export function fetchTopRatedMoviesSuccess(topRatedMovies) {
+  return {
+    type: FETCH_TOPRATEDMOVIES_SUCCESS,
+    payload: {
+      data: topRatedMovies.results
+    }
+  }
+}
+export function fetchTopRatedMoviesFailure(message) {
+  return {
+    type: FETCH_TOPRATEDMOVIES_FAILURE,
+    payload: {
+      error: message
+    }
+  }
+}
+
 //TV Series
 export function fetchPopularSeriesStarted() {
 	return {
@@ -210,9 +259,31 @@ export function fetchPopularSeriesFailure(message) {
     }
   }
 }
+export function fetchTodaySeriesStarted() {
+	return {
+    	type: FETCH_TODAYSERIES_STARTED,
+  	}
+}
+
+export function fetchTodaySeriesSuccess(todaySeries) {
+  return {
+    type: FETCH_TODAYSERIES_SUCCESS,
+    payload: {
+      data: todaySeries.results
+    }
+  }
+}
+export function fetchTodaySeriesFailure(message) {
+  return {
+    type: FETCH_TODAYSERIES_FAILURE,
+    payload: {
+      error: message
+    }
+  }
+}
 export function fetchOnAirSeriesStarted() {
 	return {
-    	type: FETCH_ONAIRERIES_STARTED,
+    	type: FETCH_ONAIRSERIES_STARTED,
   	}
 }
 

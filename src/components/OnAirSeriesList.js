@@ -12,13 +12,13 @@ const OnAirSeriesList = () => {
   const {state, dispatch} = useContext(AppContext);
   const {onairSeries} = state;
   ({loading, error, data} = onairSeries);
-  const url = `${BASE_URL}/tv/on_the_air?api_key=${API_KEY}`;
-  const request = {};
+
 
 
   useEffect(() => {
     dispatch(fetchOnAirSeriesStarted);
-
+    const url = `${BASE_URL}/tv/on_the_air?api_key=${API_KEY}`;
+    const request = {};
     fetchOnAirSeries(url, request, dispatch);
   }, []);
 

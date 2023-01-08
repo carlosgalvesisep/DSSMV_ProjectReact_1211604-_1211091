@@ -3,6 +3,7 @@ import React from 'react';
 import {StyleSheet, View,ScrollView, Text, Image, TouchableOpacity} from 'react-native';
 import {API_KEY, BASE_URL, IMAGE_URL } from '../services/ApiHandler';
 import AppContext from '../context/AppContext';
+import { TextInput } from 'react-native';
 import {
   fetchDetails,
   fetchDetailsStarted,
@@ -22,7 +23,6 @@ function DetailsScreen(props) {
     const url = BASE_URL + '/movie/' + id + '?api_key=' + API_KEY;
     const request = {};
     fetchDetails(url, request, dispatch)
-    console.log(JSON.stringify(data))
   }, [])
 
 
@@ -59,10 +59,29 @@ function DetailsScreen(props) {
                 <Text style={styles.textOverview}> {data.overview}</Text>
                 <Text style={styles.textTitle}> Language:         Rating:           Release:              Duration:</Text>          
                 <Text style ={styles.textLanguage}> {data.original_language}                <Text> {data.vote_average} </Text>       <Text> {data.release_date} </Text>       <Text> {data.runtime} min </Text> </Text> 
-
+                
                 <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText}> RATE IT </Text>
-                </TouchableOpacity>
+                <TextInput style={{
+                    borderBottonwidth: 1, 
+                    borderBottonColor: 'white', 
+                    textAlign: 'center', 
+                    margintop: 20, 
+                    color: 'grey', 
+                    fontsize: 20,
+                  }}
+                    placeholder={'Rate it'} 
+                    placeholderTextColor={'white'}
+                    keyboardType = {'numeric'}
+                    maxLength={2}
+                    onChangeText={vall => setValue (vall)}></TextInput>
+                <Text
+              style={{
+              margintop: 30, 
+              marginBotton: 70, 
+              color: 'black', 
+              fontSize: 14,
+            }}></Text>
+                </TouchableOpacity> 
           
                 </ScrollView>
               </View>
@@ -86,10 +105,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     backgroundColor: 'grey',
-    alignSelf: 'center',
     width: 100,
     height: 50,
     borderRadius: 10,
+    alignSelf: 'center',
+
   },
   view: {
     flex:1,
@@ -123,7 +143,7 @@ Status: {
   fontSize: 23,
 },
 buttonText: {
-  color: "black",
+  color: "white",
   fontSize: 15,
   marginTop: 12,
 

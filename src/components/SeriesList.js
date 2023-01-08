@@ -12,13 +12,12 @@ const SeriesList = () => {
   const {state, dispatch} = useContext(AppContext);
   const {popularSeries} = state;
   ({loading, error, data} = popularSeries);
-  const url = `${BASE_URL}/tv/popular?api_key=${API_KEY}`;
-  const request = {};
 
 
   useEffect(() => {
     dispatch(fetchPopularSeriesStarted);
-
+    const url = `${BASE_URL}/tv/popular?api_key=${API_KEY}`;
+    const request = {};
     fetchPopularSeries(url, request, dispatch);
   }, []);
 

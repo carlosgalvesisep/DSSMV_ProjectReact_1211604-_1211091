@@ -6,6 +6,7 @@ import AppProvider from './src/context/AppProvider';
 import { createStackNavigator } from '@react-navigation/stack';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+import { GuestLogin } from './src/components/GuestLogin';
 
 
 import LogInScreen from './src/screens/LoginScreen';
@@ -16,6 +17,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { acc } from 'react-native-reanimated';
 import SeriesScreen from './src/screens/SeriesScreen';
 import SeriesDetailsScreen from './src/screens/SeriesDetailsScreen';
+import WatchListScreen from './src/screens/WatchListScreen';
 
 
 

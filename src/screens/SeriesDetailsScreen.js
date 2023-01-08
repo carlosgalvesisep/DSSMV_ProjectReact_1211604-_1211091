@@ -3,6 +3,7 @@ import React from 'react';
 import {StyleSheet, View,ScrollView, Text, Image, TouchableOpacity} from 'react-native';
 import {API_KEY, BASE_URL, IMAGE_URL } from '../services/ApiHandler';
 import AppContext from '../context/AppContext';
+import { TextInput } from 'react-native';
 import {
   fetchSeriesDetails,
   fetchSeriesDetailsStarted,
@@ -43,7 +44,7 @@ function SeriesDetailsScreen(props) {
         return (
               <View style={styles.view}>
               <ScrollView>
-                <Text style={styles.Status}> {data.status}</Text>
+                <Text style={styles.Status}> {data.status}  </Text>
               <Image
                   source={{ 
                     width: 200,
@@ -67,7 +68,26 @@ function SeriesDetailsScreen(props) {
                 <Text style ={styles.textLanguage}> {data.original_language}                       <Text> {data.number_of_seasons} </Text>            <Text> {data.first_air_date} </Text>          <Text> {data.number_of_episodes} ep </Text> </Text> 
                 <Text style={styles.textTitle}> Available on: {data.homepage}</Text>
                 <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText}> RATE IT </Text>
+                <TextInput style={{
+                    borderBottonwidth: 1, 
+                    borderBottonColor: 'white', 
+                    textAlign: 'center', 
+                    margintop: 20, 
+                    color: 'grey', 
+                    fontsize: 20,
+                  }}
+                    placeholder={'Rate it'} 
+                    placeholderTextColor={'white'}
+                    keyboardType = {'numeric'}
+                    maxLength={2}
+                    onChangeText={vall => setValue (vall)}></TextInput>
+                <Text
+              style={{
+              margintop: 30, 
+              marginBotton: 70, 
+              color: 'black', 
+              fontSize: 14,
+            }}></Text>
                 </TouchableOpacity>
           
                 </ScrollView>
@@ -129,7 +149,7 @@ Status: {
   fontSize: 23,
 },
 buttonText: {
-  color: "black",
+  color: "white",
   fontSize: 15,
   marginTop: 12,
 

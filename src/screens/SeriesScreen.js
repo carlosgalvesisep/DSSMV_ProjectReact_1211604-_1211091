@@ -2,6 +2,7 @@ import {StyleSheet, View,ScrollView, Text} from 'react-native';
 import SeriesList from '../components/SeriesList';
 import TopRatedSeriesList from '../components/TopRatedSeries';
 import OnAirSeriesList from '../components/OnAirSeriesList';
+import TodaySeriesList from '../components/SeriesTodayList';
 
 
 
@@ -9,12 +10,14 @@ function SeriesScreen() {
 
     return (
 		<ScrollView style={styles.scrollView}>
-		<Text style={styles.title}> Popular Series</Text>
+		<Text style={styles.titleTop}> Popular Series</Text>
 		<SeriesList/>
 		<Text style={styles.title}> Top Rated Series</Text>
 		<TopRatedSeriesList/>
 		<Text style={styles.title}> On Air Series</Text>
 		<OnAirSeriesList/>
+		<Text style={styles.title}> Today On TV</Text>
+		<TodaySeriesList/>	
 		</ScrollView>
     );
 
@@ -31,11 +34,17 @@ const styles = StyleSheet.create({
 		marginBottom:50,
 		flex: 1,
 	},	
+	titleTop: {
+		color: "black",
+		fontWeight: "500",
+		fontSize: 15,
+		alignSelf: 'center',
+	},
 	title: {
 		color: "black",
 		fontWeight: "500",
 		fontSize: 15,
-		marginTop: 5,
+		marginTop: 15,
 		alignSelf: 'center',
 	},
 });

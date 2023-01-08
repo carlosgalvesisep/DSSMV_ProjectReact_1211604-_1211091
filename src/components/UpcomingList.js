@@ -12,13 +12,13 @@ const UpcomingList = () => {
   const {state, dispatch} = useContext(AppContext);
   const {upcomingMovies} = state;
   ({loading, error, data} = upcomingMovies);
-  const url = `${BASE_URL}/movie/upcoming?api_key=${API_KEY}`;
-  const request = {};
+
 
 
   useEffect(() => {
     dispatch(fetchUpcomingMoviesStarted);
-
+    const url = `${BASE_URL}/movie/upcoming?api_key=${API_KEY}`;
+    const request = {};
     fetchUpcomingMovies(url, request, dispatch);
   }, []);
 

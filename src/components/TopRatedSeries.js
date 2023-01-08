@@ -12,13 +12,13 @@ const TopRatedSeriesList = () => {
   const {state, dispatch} = useContext(AppContext);
   const {topRatedSeries} = state;
   ({loading, error, data} = topRatedSeries);
-  const url = `${BASE_URL}/tv/top_rated?api_key=${API_KEY}`;
-  const request = {};
+  
 
 
   useEffect(() => {
     dispatch(fetchTopRatedSeriesStarted);
-
+    const url = `${BASE_URL}/tv/top_rated?api_key=${API_KEY}`;
+    const request = {};
     fetchTopRatedSeries(url, request, dispatch);
   }, []);
 

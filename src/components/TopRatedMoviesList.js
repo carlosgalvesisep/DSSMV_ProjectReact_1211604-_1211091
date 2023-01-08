@@ -4,22 +4,20 @@ import {View, Text, FlatList, Image, StyleSheet, TouchableOpacity} from 'react-n
 import {BASE_URL, API_KEY, IMAGE_URL} from '../services/ApiHandler';
 import {useNavigation} from '@react-navigation/native';
 import {
-  fetchPopularMovies,
-  fetchPopularMoviesStarted,
+  fetchTopRatedMovies,
+  fetchTopRatedMoviesStarted,
 } from '../context/Actions';
 
-const MoviesList = () => {
+const TopRatedMoviesList = () => {
   const {state, dispatch} = useContext(AppContext);
-  const {popularMovies} = state;
-  ({loading, error, data} = popularMovies);
-
-
+  const {topRatedMovies} = state;
+  ({loading, error, data} = topRatedMovies);
 
   useEffect(() => {
-    dispatch(fetchPopularMoviesStarted);
-    const url = `${BASE_URL}/movie/popular?api_key=${API_KEY}`;
+    dispatch(fetchTopRatedMoviesStarted);
+    const url = `${BASE_URL}/movie/top_rated?api_key=${API_KEY}`;
     const request = {};
-    fetchPopularMovies(url, request, dispatch);
+    fetchTopRatedMovies(url, request, dispatch);
   }, []);
 
   if (loading === true) {
@@ -98,4 +96,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MoviesList;
+export default TopRatedMoviesList;

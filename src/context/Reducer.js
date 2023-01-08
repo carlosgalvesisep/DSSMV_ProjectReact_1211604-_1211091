@@ -9,13 +9,23 @@ import {
     FETCH_UPCOMINGMOVIES_STARTED,
     FETCH_UPCOMINGMOVIES_SUCCESS,
     FETCH_UPCOMINGMOVIES_FAILURE,
+    FETCH_TOPRATEDMOVIES_STARTED,
+    FETCH_TOPRATEDMOVIES_SUCCESS,
+    FETCH_TOPRATEDMOVIES_FAILURE,
 
     FETCH_POPULARSERIES_STARTED,
     FETCH_POPULARSERIES_SUCCESS,
     FETCH_POPULARSERIES_FAILURE,
+    FETCH_TODAYSERIES_STARTED,
+    FETCH_TODAYSERIES_SUCCESS,
+    FETCH_TODAYSERIES_FAILURE,
+    FETCH_ONAIRSERIES_STARTED,
+    FETCH_ONAIRSERIES_SUCCESS,
+    FETCH_ONAIRSERIES_FAILURE,
     FETCH_TOPRATEDSERIES_STARTED,
     FETCH_TOPRATEDSERIES_SUCCESS,
     FETCH_TOPRATEDSERIES_FAILURE,
+
     FETCH_DETAILS_STARTED,
     FETCH_DETAILS_SUCCESS,
     FETCH_DETAILS_FAILURE,
@@ -66,6 +76,34 @@ import {
             data: [],
           }
         }
+        case FETCH_LATESTMOVIES_STARTED:
+          return {
+            ...state,
+            latestMovies: {
+              loading: true,
+              error: null,
+              data: {
+                results:[]}
+            }
+          }
+        case FETCH_LATESTMOVIES_SUCCESS:
+          return {
+            ...state,
+            latestMovies: {
+              loading: false,
+              error: null,
+              data: [...action.payload.data]
+            }
+          }
+        case FETCH_LATESTMOVIES_FAILURE:
+          return {
+            ...state,
+            latestMovies: {
+              loading: false,
+              error: action.payload.error,
+              data: [],
+            }
+          }
         case FETCH_UPCOMINGMOVIES_STARTED:
         return {
           ...state,
@@ -94,6 +132,34 @@ import {
             data: [],
           }
         }
+        case FETCH_TOPRATEDMOVIES_STARTED:
+          return {
+            ...state,
+            topRatedMovies: {
+              loading: true,
+              error: null,
+              data: {
+                results:[]}
+            }
+          }
+        case FETCH_TOPRATEDMOVIES_SUCCESS:
+          return {
+            ...state,
+            topRatedMovies: {
+              loading: false,
+              error: null,
+              data: [...action.payload.data]
+            }
+          }
+        case FETCH_TOPRATEDMOVIES_FAILURE:
+          return {
+            ...state,
+            topRatedMovies: {
+              loading: false,
+              error: action.payload.error,
+              data: [],
+            }
+          }
         case FETCH_POPULARSERIES_STARTED:
         return {
           ...state,
@@ -122,6 +188,63 @@ import {
             data: [],
           }
         }
+
+        case FETCH_TODAYSERIES_STARTED:
+        return {
+          ...state,
+          todaySeries: {
+            loading: true,
+            error: null,
+            data: {
+              results:[]}
+          }
+        }
+      case FETCH_TODAYSERIES_SUCCESS:
+        return {
+          ...state,
+          todaySeries: {
+            loading: false,
+            error: null,
+            data: [...action.payload.data]
+          }
+        }
+      case FETCH_TODAYSERIES_FAILURE:
+        return {
+          ...state,
+          todaySeries: {
+            loading: false,
+            error: action.payload.error,
+            data: [],
+          }
+        }
+        case FETCH_ONAIRSERIES_STARTED:
+          return {
+            ...state,
+            onairSeries: {
+              loading: true,
+              error: null,
+              data: {
+                results:[]}
+            }
+          }
+        case FETCH_ONAIRSERIES_SUCCESS:
+          return {
+            ...state,
+            onairSeries: {
+              loading: false,
+              error: null,
+              data: [...action.payload.data]
+            }
+          }
+        case FETCH_ONAIRSERIES_FAILURE:
+          return {
+            ...state,
+            onairSeries: {
+              loading: false,
+              error: action.payload.error,
+              data: [],
+            }
+          }
         case FETCH_TOPRATEDSERIES_STARTED:
           return {
             ...state,
@@ -204,6 +327,60 @@ import {
               data: {},
             }
           }
+          case CREATE_REQUESTTOKEN_STARTED:
+				return {
+					...state,
+					requestToken: {
+					loading: true,
+					error: null,
+					data: []
+					}
+				}
+			case CREATE_REQUESTTOKEN_SUCCESS:
+				return {
+					...state,
+					requestToken: {
+					loading: false,
+					error: null,
+					data: [...action.payload.data]
+					}
+				}
+			case CREATE_REQUESTTOKEN_FAILURE:
+				return {
+					...state,
+					requestToken: {
+					loading: false,
+					error: action.payload.error,
+					data: [],
+					}
+				}
+			case CREATE_GUESTSESSION_STARTED:
+				return {
+					...state,
+					guestSession: {
+					loading: true,
+					error: null,
+					data: {}
+					}
+				}
+			case CREATE_GUESTSESSION_SUCCESS:
+				return {
+					...state,
+					guestSession: {
+					loading: false,
+					error: null,
+					data: {...action.payload.data}
+					}
+				}
+			case CREATE_GUESTSESSION_FAILURE:
+				return {
+					...state,
+					guestSession: {
+					loading: false,
+					error: action.payload.error,
+					data: {},
+					}
+				}
       default:
         return state
     }
