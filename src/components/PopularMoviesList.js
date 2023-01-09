@@ -4,23 +4,22 @@ import {View, Text, FlatList, Image, StyleSheet, TouchableOpacity} from 'react-n
 import {BASE_URL, API_KEY, IMAGE_URL} from '../services/ApiHandler';
 import {useNavigation} from '@react-navigation/native';
 import {
-  fetchUserRatedMovies,
-  fetchUserRatedMoviesStarted,
+  fetchPopularMovies,
+  fetchPopularMoviesStarted,
 } from '../context/Actions';
 
-const UserRatedMoviesList = () => {
+const MoviesList = () => {
   const {state, dispatch} = useContext(AppContext);
-  const {userRatedMovies} = state;
-  ({loading, error, data} = userRatedMovies);
+  const {popularMovies} = state;
+  ({loading, error, data} = popularMovies);
 
 
 
   useEffect(() => {
-    dispatch(fetchUserRatedMoviesStarted);
-    const url = `${BASE_URL}/guest_session/`+global.session_id +`/rated/movies?api_key=${API_KEY}`;
-    console.log(url);
+    dispatch(fetchPopularMoviesStarted);
+    const url = `${BASE_URL}/movie/popular?api_key=${API_KEY}`;
     const request = {};
-    fetchUserRatedMovies(url, request, dispatch);
+    fetchPopularMovies(url, request, dispatch);
   }, []);
 
   if (loading === true) {
@@ -38,7 +37,7 @@ const UserRatedMoviesList = () => {
       );
     } else {
       if (data.length > 0) {       
-      const navigation = useNavigation();
+const navigation = useNavigation();
         return (
           <FlatList
             horizontal
@@ -51,11 +50,11 @@ const UserRatedMoviesList = () => {
             navigation.navigate('DetailsScreen',{data: item.id})}>       
           
               <View style={styles.view}>
-              <Text style={styles.textRating}> Rating: {item.rating}</Text>
                 <Image
                   style={styles.image}
                   source={{uri: IMAGE_URL + item.poster_path}}
-                  resizeMode="cover"                
+                  resizeMode="cover"
+                
                 />
                 <Text style={styles.text}> {item.title}</Text>
               </View>
@@ -96,11 +95,6 @@ const styles = StyleSheet.create({
     color: 'black',
     alignSelf: 'center',
   },
-  textRating: {
-    color: 'black',
-    alignSelf: 'center',
-    fontSize: 15,
-  },
 });
 
-export default UserRatedMoviesList;
+export default MoviesList;

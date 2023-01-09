@@ -12,12 +12,17 @@ import {
     FETCH_TOPRATEDMOVIES_STARTED,
     FETCH_TOPRATEDMOVIES_SUCCESS,
     FETCH_TOPRATEDMOVIES_FAILURE,
+
     FETCH_SEARCHMOVIES_STARTED,
     FETCH_SEARCHMOVIES_SUCCESS,
     FETCH_SEARCHMOVIES_FAILURE,
+
     FETCH_USERRATEDMOVIES_STARTED,
     FETCH_USERRATEDMOVIES_SUCCESS,
     FETCH_USERRATEDMOVIES_FAILURE,
+    FETCH_USERRATEDSERIES_STARTED,
+    FETCH_USERRATEDSERIES_SUCCESS,
+    FETCH_USERRATEDSERIES_FAILURE,
 
 
     FETCH_POPULARSERIES_STARTED,
@@ -96,34 +101,7 @@ import {
           }
         }
 
-        case FETCH_USERRATEDMOVIES_STARTED:
-          return {
-            ...state,
-            userRatedMovies: {
-              loading: true,
-              error: null,
-              data: {
-                results:[]}
-            }
-          }
-        case FETCH_USERRATEDMOVIES_SUCCESS:
-          return {
-            ...state,
-            userRatedMovies: {
-              loading: false,
-              error: null,
-              data: [...action.payload.data]
-            }
-          }
-        case FETCH_USERRATEDMOVIES_FAILURE:
-          return {
-            ...state,
-            userRatedMovies: {
-              loading: false,
-              error: action.payload.error,
-              data: [],
-            }
-          }
+        
         case FETCH_LATESTMOVIES_STARTED:
           return {
             ...state,
@@ -344,6 +322,63 @@ import {
           return {
             ...state,
             topRatedSeries: {
+              loading: false,
+              error: action.payload.error,
+              data: [],
+            }
+          }
+          case FETCH_USERRATEDMOVIES_STARTED:
+            return {
+              ...state,
+              userRatedMovies: {
+                loading: true,
+                error: null,
+                data: {
+                  results:[]}
+              }
+            }
+          case FETCH_USERRATEDMOVIES_SUCCESS:
+            return {
+              ...state,
+              userRatedMovies: {
+                loading: false,
+                error: null,
+                data: [...action.payload.data]
+              }
+            }
+          case FETCH_USERRATEDMOVIES_FAILURE:
+            return {
+              ...state,
+              userRatedMovies: {
+                loading: false,
+                error: action.payload.error,
+                data: [],
+              }
+            }
+
+            case FETCH_USERRATEDSERIES_STARTED:
+          return {
+            ...state,
+            userRatedSeries: {
+              loading: true,
+              error: null,
+              data: {
+                results:[]}
+            }
+          }
+        case FETCH_USERRATEDSERIES_SUCCESS:
+          return {
+            ...state,
+            userRatedSeries: {
+              loading: false,
+              error: null,
+              data: [...action.payload.data]
+            }
+          }
+        case FETCH_USERRATEDSERIES_FAILURE:
+          return {
+            ...state,
+            userRatedSeries: {
               loading: false,
               error: action.payload.error,
               data: [],

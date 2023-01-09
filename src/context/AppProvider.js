@@ -25,6 +25,11 @@ const initialState = {
     error: null,
     data: [],
   },
+  userRatedSeries: {
+    loading: true,
+    error: null,
+    data: [],
+  },
   popularSeries: {
     loading: true,
     error: null,

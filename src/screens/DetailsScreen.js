@@ -15,19 +15,6 @@ import {
 
 
 
-
-
-
-
-
-
-
- 
-
-
-
-
-
 function DetailsScreen(props) {
   const { state, dispatch } = useContext(AppContext);
   const {details} = state;
@@ -56,7 +43,7 @@ function DetailsScreen(props) {
     const request = {
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       method: 'post',
-      body:  'value'+rating,
+      body:  'value='+rating,
     };
     postMovieRating(url, request, dispatch);
   

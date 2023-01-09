@@ -12,12 +12,17 @@ export const FETCH_UPCOMINGMOVIES_FAILURE = 'FETCH_UPCOMINGMOVIES_FAILURE';
 export const FETCH_TOPRATEDMOVIES_STARTED = 'FETCH_TOPRATEDMOVIES_STARTED';
 export const FETCH_TOPRATEDMOVIES_SUCCESS = 'FETCH_TOPRATEDMOVIES_SUCCESS';
 export const FETCH_TOPRATEDMOVIES_FAILURE = 'FETCH_TOPRATEDMOVIES_FAILURE';
+
 export const FETCH_SEARCHMOVIES_STARTED = 'FETCH_SEARCHMOVIES_STARTED';
 export const FETCH_SEARCHMOVIES_SUCCESS = 'FETCH_SEARCHMOVIES_SUCCESS';
 export const FETCH_SEARCHMOVIES_FAILURE = 'FETCH_SEARCHMOVIES_FAILURE';
+
 export const FETCH_USERRATEDMOVIES_STARTED = 'FETCH_USERRATEDMOVIES_STARTED';
 export const FETCH_USERRATEDMOVIES_SUCCESS = 'FETCH_USERRATEDMOVIES_SUCCESS';
 export const FETCH_USERRATEDMOVIES_FAILURE = 'FETCH_USERRATEDMOVIES_FAILURE';
+export const FETCH_USERRATEDSERIES_STARTED = 'FETCH_USERRATEDSERIES_STARTED';
+export const FETCH_USERRATEDSERIES_SUCCESS = 'FETCH_USERRATEDSERIES_SUCCESS';
+export const FETCH_USERRATEDSERIES_FAILURE = 'FETCH_USERRATEDSERIES_FAILURE';
 
 export const FETCH_POPULARSERIES_STARTED = 'FETCH_POPULARSERIES_STARTED';
 export const FETCH_POPULARSERIES_SUCCESS = 'FETCH_POPULARSERIES_SUCCESS';
@@ -106,6 +111,14 @@ export function fetchUserRatedMovies(url, request, dispatch) {
   const success = (res) => dispatch(fetchUserRatedMoviesSuccess(res));
   //função ser executado em caso de falha
   const failure = (err) => dispatch(fetchUserRatedMoviesFailure(err.message));
+  makeHTTPRequest(url, request, success, failure);
+}
+
+export function fetchUserRatedSeries(url, request, dispatch) {
+  //função ser executado em caso de sucesso
+  const success = (res) => dispatch(fetchUserRatedSeriesSuccess(res));
+  //função ser executado em caso de falha
+  const failure = (err) => dispatch(fetchUserRatedSeriesFailure(err.message));
   makeHTTPRequest(url, request, success, failure);
 }
 
@@ -267,6 +280,30 @@ export function fetchUserRatedMoviesSuccess(userRatedMovies) {
 export function fetchUserRatedMoviesFailure(message) {
   return {
       type: FETCH_USERRATEDMOVIES_FAILURE,
+      payload: {
+        error: message
+      }
+  }
+}
+
+export function fetchUserRatedSeriesStarted() {
+  return {
+    type: FETCH_USERRATEDSERIES_STARTED,
+  }
+}
+
+export function fetchUserRatedSeriesSuccess(userRatedSeries) {
+  return {
+    type: FETCH_USERRATEDSERIES_SUCCESS,
+    payload: {
+      data: userRatedSeries.results
+    }
+  }
+}
+
+export function fetchUserRatedSeriesFailure(message) {
+  return {
+      type: FETCH_USERRATEDSERIES_FAILURE,
       payload: {
         error: message
       }

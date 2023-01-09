@@ -4,23 +4,23 @@ import {View, Text, FlatList, Image, StyleSheet, TouchableOpacity} from 'react-n
 import {BASE_URL, API_KEY, IMAGE_URL} from '../services/ApiHandler';
 import {useNavigation} from '@react-navigation/native';
 import {
-  fetchUserRatedMovies,
-  fetchUserRatedMoviesStarted,
+  fetchUserRatedSeries,
+  fetchUserRatedSeriesStarted,
 } from '../context/Actions';
 
-const UserRatedMoviesList = () => {
+const UserRatedSeriesList = () => {
   const {state, dispatch} = useContext(AppContext);
-  const {userRatedMovies} = state;
-  ({loading, error, data} = userRatedMovies);
+  const {userRatedSeries} = state;
+  ({loading, error, data} = userRatedSeries);
 
 
 
   useEffect(() => {
-    dispatch(fetchUserRatedMoviesStarted);
-    const url = `${BASE_URL}/guest_session/`+global.session_id +`/rated/movies?api_key=${API_KEY}`;
-    console.log(url);
+    dispatch(fetchUserRatedSeriesStarted);
+    const url = `${BASE_URL}/guest_session/`+global.session_id +`/rated/tv?api_key=${API_KEY}`;
+    console.log(url)
     const request = {};
-    fetchUserRatedMovies(url, request, dispatch);
+    fetchUserRatedSeries(url, request, dispatch);
   }, []);
 
   if (loading === true) {
@@ -103,4 +103,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UserRatedMoviesList;
+export default UserRatedSeriesList;
