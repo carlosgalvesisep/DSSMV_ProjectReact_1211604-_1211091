@@ -70,6 +70,12 @@ const initialState = {
     error: null,
     data: {},
   },
+  searchMovies: {
+    firstSearch: true,
+    loading: true,
+    error: null,
+    data: [],
+  },
 };
 
 const AppProvider = (props) => {

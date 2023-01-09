@@ -12,6 +12,10 @@ import {
     FETCH_TOPRATEDMOVIES_STARTED,
     FETCH_TOPRATEDMOVIES_SUCCESS,
     FETCH_TOPRATEDMOVIES_FAILURE,
+    FETCH_SEARCHMOVIES_STARTED,
+    FETCH_SEARCHMOVIES_SUCCESS,
+    FETCH_SEARCHMOVIES_FAILURE,
+
 
     FETCH_POPULARSERIES_STARTED,
     FETCH_POPULARSERIES_SUCCESS,
@@ -112,6 +116,34 @@ import {
               data: [],
             }
           }
+          case FETCH_SEARCHMOVIES_STARTED:
+            return {
+              ...state,
+                searchMovies: {
+                loading: true,
+                error: null,
+                data: {
+                  results:[]}
+              }
+            }
+          case FETCH_SEARCHMOVIES_SUCCESS:
+            return {
+              ...state,
+                searchMovies: {
+                loading: false,
+                error: null,
+                data: [...action.payload.data]
+              }
+            }
+          case FETCH_SEARCHMOVIES_FAILURE:
+            return {
+              ...state,
+                searchMovies: {
+                loading: false,
+                error: action.payload.error,
+                data: [],
+              }
+            }
         case FETCH_UPCOMINGMOVIES_STARTED:
         return {
           ...state,

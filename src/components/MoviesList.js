@@ -36,8 +36,7 @@ const MoviesList = () => {
         </View>
       );
     } else {
-      if (data.length > 0) {
-        
+      if (data.length > 0) {       
 const navigation = useNavigation();
         return (
           <FlatList

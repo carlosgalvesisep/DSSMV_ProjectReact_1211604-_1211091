@@ -47,8 +47,8 @@ function SeriesDetailsScreen(props) {
                 <Text style={styles.Status}> {data.status}  </Text>
               <Image
                   source={{ 
-                    width: 200,
-                    height: 250,
+                    width: 300,
+                    height: 350 ,
                     uri: 'https://image.tmdb.org/t/p/w500' + data.poster_path
                   }}
                   style={{

@@ -12,12 +12,12 @@ import { GuestLogin } from './src/components/GuestLogin';
 import LogInScreen from './src/screens/LoginScreen';
 import MoviesScreen from './src/screens/MoviesScreen';
 import DetailsScreen from './src/screens/DetailsScreen';
-import AccountScreen from './src/screens/AccountScreen';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { acc } from 'react-native-reanimated';
 import SeriesScreen from './src/screens/SeriesScreen';
 import SeriesDetailsScreen from './src/screens/SeriesDetailsScreen';
-import WatchListScreen from './src/screens/WatchListScreen';
+import RatesListScreen from './src/screens/RatesListScreen';
+import SearchScreen from './src/screens/SearchScreen';
 
 
 
@@ -39,16 +39,16 @@ function Home() {
               <MaterialCommunityIcons name="login" color={color} size={size} />
             ),
           }} />
-      <Tab.Screen name="Account" component={AccountScreen} 
+      <Tab.Screen name="Search" component={SearchScreen} 
       options={{
-        tabBarLabel: 'Account',
+        tabBarLabel: 'Search',
         tabBarIcon: ({color, size}) => (
-          <MaterialCommunityIcons name="account" color={color} size={size} />
+          <MaterialCommunityIcons name="movie-search" color={color} size={size} />
         ),
       }}/>
-       <Tab.Screen name="Watchlist" component={WatchListScreen} 
+       <Tab.Screen name="Your Rated Films" component={RatesListScreen} 
       options={{
-        tabBarLabel: 'WatchList',
+        tabBarLabel: 'Rated',
         tabBarIcon: ({color, size}) => (
         <MaterialCommunityIcons name="folder-star-outline" color={color} size={size} />
         ),
@@ -102,7 +102,7 @@ export default function App() {
       options={{ headerShown: false }}/>
       <Stack.Screen
       name="AccountScreen"
-      component={AccountScreen}/>
+      component={SearchScreen}/>
       <Stack.Screen
       name="SeriesDetailsScreen"
       component={SeriesDetailsScreen}

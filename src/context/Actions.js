@@ -12,6 +12,9 @@ export const FETCH_UPCOMINGMOVIES_FAILURE = 'FETCH_UPCOMINGMOVIES_FAILURE';
 export const FETCH_TOPRATEDMOVIES_STARTED = 'FETCH_TOPRATEDMOVIES_STARTED';
 export const FETCH_TOPRATEDMOVIES_SUCCESS = 'FETCH_TOPRATEDMOVIES_SUCCESS';
 export const FETCH_TOPRATEDMOVIES_FAILURE = 'FETCH_TOPRATEDMOVIES_FAILURE';
+export const FETCH_SEARCHMOVIES_STARTED = 'FETCH_SEARCHMOVIES_STARTED';
+export const FETCH_SEARCHMOVIES_SUCCESS = 'FETCH_SEARCHMOVIES_SUCCESS';
+export const FETCH_SEARCHMOVIES_FAILURE = 'FETCH_SEARCHMOVIES_FAILURE';
 
 export const FETCH_POPULARSERIES_STARTED = 'FETCH_POPULARSERIES_STARTED';
 export const FETCH_POPULARSERIES_SUCCESS = 'FETCH_POPULARSERIES_SUCCESS';
@@ -82,6 +85,15 @@ export function fetchTopRatedMovies(url, request, dispatch) {
   const failure = (err) => dispatch(fetchTopRatedMoviesFailure(err.message));
   makeHTTPRequest(url, request, success, failure);
 }
+
+export function fetchSearchMovies(url, request, dispatch) {
+  //função ser executado em caso de sucesso
+  const success = (res) => dispatch(fetchSearchMoviesSuccess(res));
+  //função ser executado em caso de falha
+  const failure = (err) => dispatch(fetchSearchMoviesFailure(err.message));
+  makeHTTPRequest(url, request, success, failure);
+}
+
 
 export function fetchPopularSeries(url, request, dispatch) {
   //função ser executado em caso de sucesso
@@ -230,6 +242,28 @@ export function fetchUpcomingMoviesSuccess(upcomingMovies) {
 export function fetchUpcomingMoviesFailure(message) {
   return {
     type: FETCH_UPCOMINGMOVIES_FAILURE,
+    payload: {
+      error: message
+    }
+  }
+}
+export function fetchSearchMoviesStarted() {
+	return {
+    	type: FETCH_SEARCHMOVIES_STARTED,
+  	}
+}
+
+export function fetchSearchMoviesSuccess(searchMovies) {
+  return {
+    type: FETCH_SEARCHMOVIES_SUCCESS,
+    payload: {
+      data: searchMovies.results
+    }
+  }
+}
+export function fetchSearchMoviesFailure(message) {
+  return {
+    type: FETCH_SEARCHMOVIES_FAILURE,
     payload: {
       error: message
     }
