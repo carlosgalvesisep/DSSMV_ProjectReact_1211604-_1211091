@@ -15,6 +15,9 @@ import {
     FETCH_SEARCHMOVIES_STARTED,
     FETCH_SEARCHMOVIES_SUCCESS,
     FETCH_SEARCHMOVIES_FAILURE,
+    FETCH_USERRATEDMOVIES_STARTED,
+    FETCH_USERRATEDMOVIES_SUCCESS,
+    FETCH_USERRATEDMOVIES_FAILURE,
 
 
     FETCH_POPULARSERIES_STARTED,
@@ -53,6 +56,10 @@ import {
     POST_MOVIERATING_SUCCESS,
     POST_MOVIERATING_FAILURE,
 
+    POST_SERIESRATING_STARTED,
+    POST_SERIESRATING_SUCCESS,
+    POST_SERIESRATING_FAILURE,
+
     
   } from './Actions'
   
@@ -88,6 +95,35 @@ import {
             data: [],
           }
         }
+
+        case FETCH_USERRATEDMOVIES_STARTED:
+          return {
+            ...state,
+            userRatedMovies: {
+              loading: true,
+              error: null,
+              data: {
+                results:[]}
+            }
+          }
+        case FETCH_USERRATEDMOVIES_SUCCESS:
+          return {
+            ...state,
+            userRatedMovies: {
+              loading: false,
+              error: null,
+              data: [...action.payload.data]
+            }
+          }
+        case FETCH_USERRATEDMOVIES_FAILURE:
+          return {
+            ...state,
+            userRatedMovies: {
+              loading: false,
+              error: action.payload.error,
+              data: [],
+            }
+          }
         case FETCH_LATESTMOVIES_STARTED:
           return {
             ...state,
@@ -476,6 +512,34 @@ import {
             data: {},
             }
           }
+
+          case POST_SERIESRATING_STARTED:
+            return {
+              ...state,
+              seriesRating: {
+              loading: true,
+              error: null,
+              data: {}
+              }
+            }
+          case POST_SERIESRATING_SUCCESS:
+            return {
+              ...state,
+              seriesRating: {
+              loading: false,
+              error: null,
+              data: {...action.payload.data}
+              }
+            }
+          case POST_SERIESRATING_FAILURE:
+            return {
+              ...state,
+              seriesRating: {
+              loading: false,
+              error: action.payload.error,
+              data: {},
+              }
+            }
 
 
       default:

@@ -1,12 +1,15 @@
-import {useContext, useEffect} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import React from 'react';
 import {StyleSheet, View,ScrollView, Text, Image, TouchableOpacity} from 'react-native';
 import {API_KEY, BASE_URL, IMAGE_URL } from '../services/ApiHandler';
 import AppContext from '../context/AppContext';
-import { TextInput } from 'react-native';
+import Input from '../components/Input';
+import Button from '../components/Button';
 import {
   fetchSeriesDetails,
   fetchSeriesDetailsStarted,
+  postSeriesRating,
+  postSeriesRatingStarted
 } from '../context/Actions';
 
 
@@ -17,6 +20,67 @@ function SeriesDetailsScreen(props) {
   const {loading, error, data} = details;
   const id = route.params !== undefined ? route.params.data : null;
   const{navigation} = props;
+
+
+  const [rating, setRating] = useState()
+
+
+  function rateSeries () {
+
+    const { seriesRating } = state;
+    const { loading, error, data } = seriesRating;
+    
+    dispatch(postSeriesRatingStarted);
+    //const url = `${BASE_URL}/movie/`+route.params.data+'/rating?guest_session_id='+global.session_id+`?api_key=${API_KEY}`;
+    //const url = `${BASE_URL}/movie/`+'424'+`/rating?api_key=${API_KEY}&guest_session_id=`+'61c00f18c1e94dadd02d303fc200733f';
+    const url = `${BASE_URL}/tv/`+route.params.data+`/rating?api_key=${API_KEY}&guest_session_id=`+global.session_id;
+    console.log(url)
+    console.log(rating)
+    const request = {
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      method: 'post',
+      body:  'value='+rating,
+    };
+    postSeriesRating(url, request, dispatch);
+  
+  
+    if (loading === true) {
+        return (
+            <View style={styles.item}>
+                <Text>Loading ....</Text>
+            </View>
+        );
+    }
+    else {
+        if (error !== null) {
+            return (
+                
+                <View style={styles.item}>
+                    <Text>Error ....</Text>
+                </View>
+            );
+        } else {
+            if (data.length != 0) {
+  
+                console.log(data.success)
+                
+            } else {
+                return (
+                    <View style={styles.item}>
+                        <Text>No data ....</Text>
+                    </View>
+                );
+            }
+        }
+    }
+  
+  };
+
+
+
+
+
+
 
   useEffect(() =>{
     dispatch(fetchSeriesDetailsStarted(id));
@@ -67,29 +131,8 @@ function SeriesDetailsScreen(props) {
                 <Text style={styles.textTitle}> Language:         Seasons:           Release:              Episodes:</Text>          
                 <Text style ={styles.textLanguage}> {data.original_language}                       <Text> {data.number_of_seasons} </Text>            <Text> {data.first_air_date} </Text>          <Text> {data.number_of_episodes} ep </Text> </Text> 
                 <Text style={styles.textTitle}> Available on: {data.homepage}</Text>
-                <TouchableOpacity style={styles.button}>
-                <TextInput style={{
-                    borderBottonwidth: 1, 
-                    borderBottonColor: 'white', 
-                    textAlign: 'center', 
-                    margintop: 20, 
-                    color: 'grey', 
-                    fontsize: 20,
-                  }}
-                    placeholder={'Rate it'} 
-                    placeholderTextColor={'white'}
-                    keyboardType = {'numeric'}
-                    maxLength={2}
-                    onChangeText={vall => setValue (vall)}></TextInput>
-                <Text
-              style={{
-              margintop: 30, 
-              marginBotton: 70, 
-              color: 'black', 
-              fontSize: 14,
-            }}></Text>
-                </TouchableOpacity>
-          
+                <Input placeholder="Rating" keyboardType = {'numeric'} value={rating} setValue={setRating} inputType={'numeric'} maxLenght={3} />
+                <Button buttonText="Rate it!" onPress={rateSeries} />
                 </ScrollView>
               </View>
              

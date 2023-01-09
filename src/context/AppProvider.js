@@ -20,6 +20,11 @@ const initialState = {
     error: null,
     data: [],
   },
+  userRatedMovies: {
+    loading: true,
+    error: null,
+    data: [],
+  },
   popularSeries: {
     loading: true,
     error: null,
@@ -70,7 +75,12 @@ const initialState = {
     error: null,
     data: {},
   },
-  searchMovies: {
+  seriesRating: {
+    loading: true,
+    error: null,
+    data: {},
+  },
+  search: {
     firstSearch: true,
     loading: true,
     error: null,

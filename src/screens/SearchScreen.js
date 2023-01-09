@@ -10,8 +10,8 @@ function SearchScreen({ navigation }) {
 
     let [movieInfo, setMoviesInfo] = useState("");
     const { state, dispatch } = useContext(AppContext);
-    const { searchMovies } = state;
-    const {firstSearch, loading, error, data } = searchMovies;
+    const { search } = state;
+    const {firstSearch, loading, error, data } = search;
 
         const getMoviesInfo= (q)=>{
             dispatch(fetchSearchMoviesStarted());

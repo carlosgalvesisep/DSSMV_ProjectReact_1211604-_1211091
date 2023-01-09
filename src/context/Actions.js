@@ -15,6 +15,9 @@ export const FETCH_TOPRATEDMOVIES_FAILURE = 'FETCH_TOPRATEDMOVIES_FAILURE';
 export const FETCH_SEARCHMOVIES_STARTED = 'FETCH_SEARCHMOVIES_STARTED';
 export const FETCH_SEARCHMOVIES_SUCCESS = 'FETCH_SEARCHMOVIES_SUCCESS';
 export const FETCH_SEARCHMOVIES_FAILURE = 'FETCH_SEARCHMOVIES_FAILURE';
+export const FETCH_USERRATEDMOVIES_STARTED = 'FETCH_USERRATEDMOVIES_STARTED';
+export const FETCH_USERRATEDMOVIES_SUCCESS = 'FETCH_USERRATEDMOVIES_SUCCESS';
+export const FETCH_USERRATEDMOVIES_FAILURE = 'FETCH_USERRATEDMOVIES_FAILURE';
 
 export const FETCH_POPULARSERIES_STARTED = 'FETCH_POPULARSERIES_STARTED';
 export const FETCH_POPULARSERIES_SUCCESS = 'FETCH_POPULARSERIES_SUCCESS';
@@ -52,6 +55,10 @@ export const CREATE_GUESTSESSION_FAILURE = 'CREATE_GUESTSESSION_FAILURE';
 export const POST_MOVIERATING_STARTED = 'POST_MOVIERATING_STARTED';
 export const POST_MOVIERATING_SUCCESS = 'POST_MOVIERATING_SUCCESS';
 export const POST_MOVIERATING_FAILURE = 'POST_MOVIERATING_FAILURE';
+
+export const POST_SERIESRATING_STARTED = 'POST_SERIESRATING_STARTED';
+export const POST_SERIESRATING_SUCCESS = 'POST_SERIESRATING_SUCCESS';
+export const POST_SERIESRATING_FAILURE = 'POST_SERIESATING_FAILURE';
 
 
 export function fetchPopularMovies(url, request, dispatch) {
@@ -91,6 +98,14 @@ export function fetchSearchMovies(url, request, dispatch) {
   const success = (res) => dispatch(fetchSearchMoviesSuccess(res));
   //função ser executado em caso de falha
   const failure = (err) => dispatch(fetchSearchMoviesFailure(err.message));
+  makeHTTPRequest(url, request, success, failure);
+}
+
+export function fetchUserRatedMovies(url, request, dispatch) {
+  //função ser executado em caso de sucesso
+  const success = (res) => dispatch(fetchUserRatedMoviesSuccess(res));
+  //função ser executado em caso de falha
+  const failure = (err) => dispatch(fetchUserRatedMoviesFailure(err.message));
   makeHTTPRequest(url, request, success, failure);
 }
 
@@ -174,6 +189,15 @@ export function postMovieRating (url, request, dispatch) {
   makeHTTPRequest(url, request, success, failure);
 }
 
+export function postSeriesRating (url, request, dispatch) {
+  //função ser executado em caso de sucesso
+  const success = (res) => dispatch(postSeriesRatingSuccess(res));
+  //função ser executado em caso de falha
+  const failure = (err) => dispatch(postSeriesRatingFailure(err.message));
+  makeHTTPRequest(url, request, success, failure);
+}
+
+
 
 
 
@@ -219,6 +243,30 @@ export function fetchLatestMoviesSuccess(latestMovies) {
 export function fetchLatestMoviesFailure(message) {
   return {
       type: FETCH_LATESTMOVIES_FAILURE,
+      payload: {
+        error: message
+      }
+  }
+}
+
+export function fetchUserRatedMoviesStarted() {
+  return {
+    type: FETCH_USERRATEDMOVIES_STARTED,
+  }
+}
+
+export function fetchUserRatedMoviesSuccess(userRatedMovies) {
+  return {
+    type: FETCH_USERRATEDMOVIES_SUCCESS,
+    payload: {
+      data: userRatedMovies.results
+    }
+  }
+}
+
+export function fetchUserRatedMoviesFailure(message) {
+  return {
+      type: FETCH_USERRATEDMOVIES_FAILURE,
       payload: {
         error: message
       }
@@ -520,6 +568,28 @@ export function postMovieRatingSuccess(movieRating) {
 export function postMovieRatingFailure(message) {
   return {
     type: POST_MOVIERATING_FAILURE,
+    payload: {
+      error: message
+    }
+  }
+}
+export function postSeriesRatingStarted() {
+	return {
+    	type: POST_SERIESRATING_STARTED,
+  	}
+}
+
+export function postSeriesRatingSuccess(seriesRating) {
+  return {
+    type: POST_SERIESRATING_SUCCESS,
+    payload: {
+      data: {...seriesRating}
+    }
+  }
+}
+export function postSeriesRatingFailure(message) {
+  return {
+    type: POST_SERIESRATING_FAILURE,
     payload: {
       error: message
     }

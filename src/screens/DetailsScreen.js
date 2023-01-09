@@ -133,8 +133,8 @@ function DetailsScreen(props) {
                 <Text style={styles.Status}> {data.status}</Text>
               <Image
                   source={{ 
-                    width: 200,
-                    height: 250,
+                    width: 300,
+                    height: 350,
                     uri: IMAGE_URL + data.poster_path
                   }}
                   style={styles.image}
@@ -147,29 +147,6 @@ function DetailsScreen(props) {
                 <Text style ={styles.textLanguage}> {data.original_language}              <Text>{data.vote_average} </Text>       <Text> {data.release_date} </Text>       <Text> {data.runtime} min </Text> </Text> 
                 <Input placeholder="Rating" keyboardType = {'numeric'} value={rating} setValue={setRating} inputType={'numeric'} maxLenght={3} />
                 <Button buttonText="Rate it!" onPress={rateMovie} />
-                <TouchableOpacity style={styles.button}>
-                <TextInput style={{
-                    borderBottonwidth: 1, 
-                    borderBottonColor: 'white', 
-                    textAlign: 'center', 
-                    margintop: 20, 
-                    color: 'grey', 
-                    fontsize: 20,
-                  }}
-                    placeholder={'Rate it'} 
-                    placeholderTextColor={'white'}
-                    keyboardType = {'numeric'}
-                    maxLength={2}
-                    onChangeText={vall => setValue (vall)}></TextInput>
-                <Text
-              style={{
-              margintop: 30, 
-              marginBotton: 70, 
-              color: 'black', 
-              fontSize: 14,
-            }}></Text>
-                </TouchableOpacity> 
-          
                 </ScrollView>
               </View>
              
