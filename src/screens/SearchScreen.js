@@ -23,7 +23,7 @@ function SearchScreen({ navigation }) {
     if (firstSearch === true) {
         return (
             <View style={styles.container}>
-                <TextInput placeholder='Type something' style={styles.input} value={movieInfo} onChangeText={(value) => setMoviesInfo(value)} />
+                <TextInput placeholder='Type something' style={styles.text} value={movieInfo} onChangeText={(value) => setMoviesInfo(value)} />
                 <Button title="Search" onPress={() => getMoviesInfo(movieInfo)} />
             </View>
         );
@@ -101,7 +101,9 @@ const styles = StyleSheet.create({
     input: {
         alignSelf: "stretch",
         margin: 8,
-        padding: 4
+        padding: 4,
+        color:'black',
+
     },
     item: {
         borderTopWidth: 2,
