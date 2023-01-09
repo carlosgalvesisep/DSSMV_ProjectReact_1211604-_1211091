@@ -68,7 +68,7 @@ const initialState = {
   movieRating: {
     loading: true,
     error: null,
-    data: [],
+    data: {},
   },
 };
 

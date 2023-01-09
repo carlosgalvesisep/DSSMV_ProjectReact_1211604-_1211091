@@ -156,9 +156,9 @@ export function createGuestSession(url, request, dispatch) {
 
 export function postMovieRating (url, request, dispatch) {
   //função ser executado em caso de sucesso
-  const success = (res) => dispatch(createMovieRatingSuccess(res));
+  const success = (res) => dispatch(postMovieRatingSuccess(res));
   //função ser executado em caso de falha
-  const failure = (err) => dispatch(createMovieRatingFailure(err.message));
+  const failure = (err) => dispatch(postMovieRatingFailure(err.message));
   makeHTTPRequest(url, request, success, failure);
 }
 

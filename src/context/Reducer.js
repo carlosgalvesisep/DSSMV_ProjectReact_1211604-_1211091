@@ -1,7 +1,7 @@
 
 import {
     FETCH_POPULARMOVIES_STARTED,
-	FETCH_POPULARMOVIES_SUCCESS,
+	  FETCH_POPULARMOVIES_SUCCESS,
     FETCH_POPULARMOVIES_FAILURE,
     FETCH_LATESTMOVIES_STARTED,
     FETCH_LATESTMOVIES_SUCCESS,
@@ -49,6 +49,7 @@ import {
     POST_MOVIERATING_SUCCESS,
     POST_MOVIERATING_FAILURE,
 
+    
   } from './Actions'
   
   
@@ -422,7 +423,7 @@ import {
             movieRating: {
             loading: true,
             error: null,
-            data: []
+            data: {}
             }
           }
         case POST_MOVIERATING_SUCCESS:
@@ -431,7 +432,7 @@ import {
             movieRating: {
             loading: false,
             error: null,
-            data: [...action.payload.data]
+            data: {...action.payload.data}
             }
           }
         case POST_MOVIERATING_FAILURE:
@@ -440,7 +441,7 @@ import {
             movieRating: {
             loading: false,
             error: action.payload.error,
-            data: [],
+            data: {},
             }
           }
 

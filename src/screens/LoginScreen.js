@@ -87,7 +87,6 @@ function LogInScreen () {
         const url = `${BASE_URL}/authentication/session/new?api_key=${API_KEY}`;
         console.log(url)
         const request = {
-            headers: {'Content-Type': 'application/json'},
             method: 'post',
             body:  {'request_token':  global.request_token}
         };
