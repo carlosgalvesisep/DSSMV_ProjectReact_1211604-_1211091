@@ -30,7 +30,6 @@ function DetailsScreen(props) {
 
 
   function rateMovie () {
-
     const { movieRating } = state;
     const { loading, error, data } = movieRating;
     

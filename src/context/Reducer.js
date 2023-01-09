@@ -133,7 +133,7 @@ import {
           case FETCH_SEARCHMOVIES_STARTED:
             return {
               ...state,
-                searchMovies: {
+                search: {
                 loading: true,
                 error: null,
                 data: {
@@ -143,7 +143,7 @@ import {
           case FETCH_SEARCHMOVIES_SUCCESS:
             return {
               ...state,
-                searchMovies: {
+                search: {
                 loading: false,
                 error: null,
                 data: [...action.payload.data]
@@ -152,7 +152,7 @@ import {
           case FETCH_SEARCHMOVIES_FAILURE:
             return {
               ...state,
-                searchMovies: {
+                search: {
                 loading: false,
                 error: action.payload.error,
                 data: [],

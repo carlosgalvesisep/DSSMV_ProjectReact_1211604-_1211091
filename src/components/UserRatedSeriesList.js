@@ -17,7 +17,7 @@ const UserRatedSeriesList = () => {
 
   useEffect(() => {
     dispatch(fetchUserRatedSeriesStarted);
-    const url = `${BASE_URL}/guest_session/`+global.session_id +`/rated/tv?api_key=${API_KEY}`;
+    const url = BASE_URL+ '/guest_session/'+global.session_id +'/rated/tv?api_key=' + API_KEY;
     console.log(url)
     const request = {};
     fetchUserRatedSeries(url, request, dispatch);
@@ -57,7 +57,7 @@ const UserRatedSeriesList = () => {
                   source={{uri: IMAGE_URL + item.poster_path}}
                   resizeMode="cover"                
                 />
-                <Text style={styles.text}> {item.title}</Text>
+                <Text style={styles.text}> {item.name}</Text>
               </View>
               </TouchableOpacity>
           )

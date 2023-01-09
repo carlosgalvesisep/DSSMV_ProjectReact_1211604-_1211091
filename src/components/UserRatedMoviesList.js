@@ -18,7 +18,6 @@ const UserRatedMoviesList = () => {
   useEffect(() => {
     dispatch(fetchUserRatedMoviesStarted);
     const url = `${BASE_URL}/guest_session/`+global.session_id +`/rated/movies?api_key=${API_KEY}`;
-    console.log(url);
     const request = {};
     fetchUserRatedMovies(url, request, dispatch);
   }, []);
@@ -38,7 +37,7 @@ const UserRatedMoviesList = () => {
       );
     } else {
       if (data.length > 0) {       
-      const navigation = useNavigation();
+const navigation = useNavigation();
         return (
           <FlatList
             horizontal

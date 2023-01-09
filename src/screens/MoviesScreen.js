@@ -1,10 +1,9 @@
 import React from 'react';
 import {StyleSheet, View,ScrollView, Text} from 'react-native';
-import MoviesList from '../components/MoviesList';
 import UpcomingList from '../components/UpcomingList'
 import LatestMoviesList from '../components/LatestMoviesList';
 import TopRatedMoviesList from '../components/TopRatedMoviesList';
-
+import PopularMoviesList from '../components/PopularMoviesList';
 
 
 function MoviesScreen() {
@@ -12,7 +11,7 @@ function MoviesScreen() {
     return (
 			<ScrollView style= {styles.scrollView}>
 				<Text style={styles.titleTop}> Popular Movies</Text>
-				<MoviesList/>
+				<PopularMoviesList/>
 				<Text style={styles.title}> Top Rated Movies</Text>
 				<TopRatedMoviesList/>
 				<Text style={styles.title}> Latest Movies</Text>

@@ -12,12 +12,6 @@ import { createGuestSession, createGuestSessionStarted, createRequestToken, crea
 
 function LogInScreen () {
 
-    const {height} = useWindowDimensions();
-
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-
-
     const { state, dispatch } = useContext(AppContext);
      
 
@@ -197,9 +191,6 @@ function LogInScreen () {
 
     return (
         <View style = {styles.container}>
-            <Input placeholder="Username" value={username} setValue={setUsername}/>
-            <Input placeholder="Password" value={password} setValue={setPassword} isSecure/>
-            <Button buttonText="Log in" onPress={onLogInPressed}/>
             <Button buttonText="Log in as Guest" onPress={onGuestLoginPressed}/>
 
             

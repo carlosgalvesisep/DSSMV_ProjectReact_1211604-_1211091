@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View,ScrollView, Text} from 'react-native';
+import {StyleSheet,ScrollView, Text} from 'react-native';
 import UserRatedMoviesList from '../components/UserRatedMoviesList';
 import UserRatedSeriesList from '../components/UserRatedSeriesList'; 
 
@@ -13,6 +13,7 @@ function RatesListScreen() {
 				<UserRatedMoviesList/>
 				<Text style={styles.title}> Rated Series</Text>
 				<UserRatedSeriesList/>
+			
 			</ScrollView>
 				
     );

@@ -8,7 +8,7 @@ import {
   fetchPopularMoviesStarted,
 } from '../context/Actions';
 
-const MoviesList = () => {
+const PopularMoviesList = () => {
   const {state, dispatch} = useContext(AppContext);
   const {popularMovies} = state;
   ({loading, error, data} = popularMovies);
@@ -97,4 +97,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MoviesList;
+export default PopularMoviesList;
